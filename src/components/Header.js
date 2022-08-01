@@ -3,7 +3,7 @@ import TabBar from "./TabBar"
 
 import "./header.css";
 
-const Header = ({ user, setUser }) => {
+const Header = ({ user, setUser,loggedIn,setLoggedIn }) => {
 
   return (
     <header>
@@ -11,7 +11,7 @@ const Header = ({ user, setUser }) => {
         <h1 className="logotext head">Fitness</h1>
         <h1 className="logotext tail">Trackr</h1>
         <img src="../../Images/stick-man-running.png" id="logoman"></img>
-        <TabBar />
+        <TabBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       </div>
     </header>
   );

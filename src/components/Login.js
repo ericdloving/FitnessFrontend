@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./login.css"
 import {login} from "../api"
 
-const Login = () => {
+const Login = ({setLoggedIn,loggedIn}) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -17,6 +17,7 @@ const Login = () => {
         localStorage.setItem("token", token);
         setUsername("")
         setPassword("")
+        setLoggedIn(true)
         navigate("/Tab1")
         }
         } catch (error) {
