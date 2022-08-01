@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,500&display=swap");
+
+header {
+  display: flex;
+  justify-content:flex-start;
+  flex-direction: row;
+  font-family: "Kanit", sans-serif;
+  background: #062f4f;
+  border:none;
+  white-space:nowrap;
+  position:absolute;
+  width:100vw;
+}
+
+#logowrapper {
+  display:block;
+  white-space:nowrap;
+  position: relative;
+  margin-left: 1em;
+}
+.logotext {
+  display:inline;
+  position:relative;
+  font-style: italic;
+  font-size: 3em;
+  color: red;
+  text-shadow: 1px 1px 3px white;
+  animation: text_glow 0.7s;
+  animation-iteration-count: 1;
+  animation-delay: 2.3s;
+}
+
+.logotext.tail {
+}
+.logotext.head {
+  z-index: 2;
+}
+@keyframes text_glow {
+  0%   {text-shadow: 1px 1px 3px white;}
+  50%  {text-shadow: 6px 6px 18px white;}
+  100% {text-shadow: 1px 1px 3px white;}
+}
+#logoman {
+    display:inline;
+  position: relative;
+  top: 6px;
+  z-index: 1;
+  height: 40px;
+  width: 50px;
+  -webkit-filter: drop-shadow(2px 2px 5px red);
+  animation: run_in 2s;
+  animation-iteration-count: 1;
+}
+@keyframes run_in {
+    from {top: 6px; right:550px;}
+    to {top: 6px;right:0px}
+}
