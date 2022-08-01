@@ -21,7 +21,7 @@
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     height: 2em;
-    width: 20vw; /*need to change if tab count changes*/
+    width: 15vw; /*need to change if tab count changes*/
     font-family: sans-serif;
     font-size: 1em;
     white-space:nowrap;
@@ -50,5 +50,9 @@
 }
 #tab4 {
     background-color: orange;
+    color: black;
+}
+#tab5 {
+    background-color: red;
     color: black;
 }
