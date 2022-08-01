@@ -20,14 +20,10 @@ export async function login(username, password) {
             password: password     
         })
     }
-console.log(request,"banana")
     const response = await fetch(`${BASE}users/login`, request)
-console.log(response,"tangelo")
     const result = await response.json();
-console.log(result,"pluot")
     const token = result.token;
-console.log(token,"durian")
-    return result;
+    return token;
   }
 export async function registerPerson(event) {
     const registerUsername = event.target[0].value;
@@ -44,9 +40,7 @@ export async function registerPerson(event) {
       })
     });
     const result = await response.json();
-    console.log(result, "its banana time")
     const token = result.token;
-    console.log(token, "its realllly banana time")
 
     localStorage.setItem("token", token);
   }
