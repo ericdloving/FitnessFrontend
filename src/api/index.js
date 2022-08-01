@@ -1,5 +1,4 @@
-const BASE = 'https://enigmatic-springs-68277.herokuapp.com/api'
-
+const BASE = `http://fitnesstrac-kr.herokuapp.com/api/`
 export async function getRotuines() {
     try {
         const response = await fetch(`${BASE}/routines`);
@@ -11,18 +10,23 @@ export async function getRotuines() {
     }
 }
 export async function login(username, password) {
-    const response = await fetch(`${BASE}/users/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-          username: username,
-          password: password,
+    const request = {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password     
         })
-    });
+    }
+console.log(request,"banana")
+    const response = await fetch(`${BASE}/users/login`, request)
+console.log(response,"tangelo")
     const result = await response.json();
-    const token = result.data.token;
+console.log(result,"pluot")
+    const token = result.token;
+console.log(token,"durian")
     return token;
   }
 // export async function name () {
