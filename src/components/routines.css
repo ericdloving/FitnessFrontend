@@ -1,0 +1,14 @@
+.routine{
+  box-shadow: 0px 15px 10px -15px black;
+  border: 1px solid;
+  margin: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.routines {
+    display: inline-grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1vw;
+   }
+
