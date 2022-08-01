@@ -3,7 +3,7 @@
 
 
 .tab1Bdy{
-    display:flex;
+    display:block;
     flex-direction: column;
     align-items: center;
     font-family: "Kanit", sans-serif;

@@ -2,8 +2,10 @@ const BASE = `http://fitnesstrac-kr.herokuapp.com/api`
 export async function getRoutines() {
     try {
   const response = await fetch(`${BASE}/routines`);
-  const result = await response.json();
-  const routines = result.data;
+  const routines = await response.json();
+  
+  
+  console.log(routines,"xxx")
   return routines;
     } catch (error) {
         throw error
