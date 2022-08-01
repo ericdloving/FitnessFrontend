@@ -1,9 +1,9 @@
-const BASE = `http://fitnesstrac-kr.herokuapp.com/api/`
-export async function getRotuines() {
+const BASE = `http://fitnesstrac-kr.herokuapp.com/api`
+export async function getRoutines() {
     try {
-        const response = await fetch(`${BASE}/routines`);
+  const response = await fetch(`${BASE}/routines`);
   const result = await response.json();
-  const routines = result.data.posts;
+  const routines = result.data;
   return routines;
     } catch (error) {
         throw error
@@ -20,7 +20,7 @@ export async function login(username, password) {
             password: password     
         })
     }
-    const response = await fetch(`${BASE}users/login`, request)
+    const response = await fetch(`${BASE}/users/login`, request)
     const result = await response.json();
     const token = result.token;
     return token;
@@ -29,7 +29,7 @@ export async function registerPerson(event) {
     const registerUsername = event.target[0].value;
     const registerPassword = event.target[1].value;
   
-    const response = await fetch(`${BASE}users/register`, {
+    const response = await fetch(`${BASE}/users/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
