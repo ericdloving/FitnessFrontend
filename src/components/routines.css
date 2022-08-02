@@ -4,11 +4,17 @@
   margin: 10px;
   margin-bottom: 20px;
   padding: 10px;
+  width: 25vw;
 }
 
-.routines {
+/* .routines {
     display: inline-grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1vw;
-   }
+   } */
 
+.routines {
+  display:flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
