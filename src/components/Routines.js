@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getRoutines } from "../api";
 import "./tabs.css";
-import "./routines.css"
+import "./routines.css";
 
 const Routines = () => {
   const [allRoutines, setAllRoutines] = useState([]);
   const [paginatedRoutines, setPaginatedRoutines] = useState([]);
-  const [pageNumber, setPageNumber] = useState(1)
+  const [pageNumber, setPageNumber] = useState(1);
   const resultsPerPage = 24;
   const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
-  let pageButtons=[]
+  let pageButtons = [];
 
   async function fetchRoutines() {
     const returnRoutines = await getRoutines();
@@ -23,94 +23,151 @@ const Routines = () => {
 
   /* The following hook slices a page worth of routines 
      & gets a new slice every time the page number changes
-     & calls to recalculate page navigation buttons */     
-  useEffect(()=> {
-      console.log(allRoutines.length,"ALLROUTINES")
-      const startIndex = (pageNumber - 1) * resultsPerPage;
-      setPaginatedRoutines(allRoutines.slice(startIndex,startIndex+resultsPerPage-1))
-      console.log(paginatedRoutines,"paginated")
-      buildPageButtons(pageNumber)
-  },[pageNumber, allRoutines])
+     & calls to recalculate page navigation buttons */
+  useEffect(() => {
+    console.log(allRoutines.length, "ALLROUTINES");
+    const startIndex = (pageNumber - 1) * resultsPerPage;
+    setPaginatedRoutines(
+      allRoutines.slice(startIndex, startIndex + resultsPerPage - 1)
+    );
+    console.log(paginatedRoutines, "paginated");
+    buildPageButtons(pageNumber);
+  }, [pageNumber, allRoutines]);
 
   function buildPageButtons(pageNum) {
-    pageButtons=[]
+    pageButtons = [];
     const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
-    if (totalPageCount<5) {
-        for (let i = 1; i <= totalPageCount; i++) {
-            pageButtons.push(i)
-        }
-    }
-    else {
-        pageButtons=[1, pageNum];
-        for (let i = pageNum; i<4; i++) {
-            pageButtons.push(pageNum+i)
-        }
-        pageButtons.push(totalPageCount)
+    if (totalPageCount < 5) {
+      for (let i = 1; i <= totalPageCount; i++) {
+        pageButtons.push(i);
+      }
+    } else {
+      pageButtons = [1, pageNum];
+      for (let i = pageNum; i < 4; i++) {
+        pageButtons.push(pageNum + i);
+      }
+      pageButtons.push(totalPageCount);
     }
   }
 
-const getActivity = () =>{
-  allRoutines.map((routine,index) => {
-    routine.activities.map((activity) => {
-      // console.log(activity, "is this the sauce?")
-      if(routine.id === activity.routineId){
-        return(
-      <p>Activities: {activity}</p>
-      )}
-    }
-    )
-  })
-}//working on pulling activities out
+  const getActivity = (routine) => {
+    const { activities } = routine;
+    activities.map((activity, index) => {
+      console.log(activity, "I've got a shake weight");
+      console.log(routine.id, "im the guy");
+      console.log(activity.routineId, "who is in my house");
+      console.log(activity.count, "how many in my house");
+    });
+  }; //working on pulling activities out
 
-const handlePageButton = (event)=> {
+  const handlePageButton = (event) => {
     setPageNumber(parseInt(event.target.value));
-    console.log(`Page ${pageNumber} selected`)
-}
+    console.log(`Page ${pageNumber} selected`);
+  };
   return (
     <div className="routines">
       {paginatedRoutines.length ? (
         paginatedRoutines.map((routine) => {
-          return(<div className="routine" key={`Routine${routine.id}`} >
-            <p>Name: {routine.name}</p>
-            <p>Goal: {routine.goal}</p>
-            <p>Creator: {routine.creatorName}</p>
-            {getActivity()}
-            
-        </div>)
+          const { activities } = routine;
+          return (
+            <div className="routine" key={`Routine${routine.id}`}>
+              <p>Name: {routine.name}</p>
+              <p>Goal: {routine.goal}</p>
+              <p>Creator: {routine.creatorName}</p>
+
+              {activities.map((activity, index) => {
+                console.log(activity.routineId, "who is in my house");
+                console.log(activity, "I've got a shake weight");
+                console.log(routine.id, "im the guy");
+                console.log(activity.count, "how many in my house");
+                if (routine.id === activity.Id) {//This is broken on purpose for right now
+                  return [
+                    <div key={index}>
+                      <p>Count: {activity.count}</p>,
+                      <p>Description: {activity.description}</p>,
+                      <p>ID: {activity.routineId}</p>
+                    </div>,
+                  ];
+                }
+              })}
+            </div>
+          );
         })
-      ) : 
+      ) : (
         <h3>There are no routines to display</h3>
-      }
+      )}
       <div id="pageButtonContainer">
-          <button value={pageNumber > 1 ? pageNumber - 1 : 1}
-                className="pageButton"
-                disabled={pageNumber < 2 ? true:false}
-                onClick = {handlePageButton}>{(pageNumber === 1)? null : "Prev"}</button>
-          {pageButtons.map((pNum)=> {
-              return (
-                  <button key={`page${pNum}`}
-                   value={pNum}
-                   className="pageButton"
-                   disabled={pageNumber===pNum ? true : false}
-                   onClick = {handlePageButton}>
-                       "{pNum}"</button>
-              )
-          })}
-          <div className="currentPage">
-          <button className="pageNum" onClick = {handlePageButton} value={pageNumber > 2 ? pageNumber - 2 : 1}>{(pageNumber > 2) ? `${pageNumber - 2 },` : null}</button>
-          <button className="pageNum" onClick = {handlePageButton} value={pageNumber > 1 ? pageNumber - 1 : 1}>{(pageNumber > 1) ? `${pageNumber - 1 },` : null}</button>
-          <button className="pageNum" id="currentPage" onClick = {()=>setPageNumber(pageNumber)}>{` ${ pageNumber}`}</button>
-          <button className="pageNum" onClick = {handlePageButton} value={pageNumber >= 1 ? pageNumber + 1 : null}>{(pageNumber+1 <= totalPageCount)?`,${pageNumber + 1}`: null}</button>
-          <button className="pageNum" onClick = {handlePageButton} value={pageNumber >= 1 ? pageNumber + 2 : null}>{(pageNumber+2 <= totalPageCount)?`,${pageNumber + 2}`: null}</button>
-          </div>
-          <button value={pageNumber * resultsPerPage < allRoutines.length ? pageNumber+1 : pageNumber}
-           className = "pageButton"
-           disabled = {allRoutines.length < pageNumber * resultsPerPage}
-           onClick = {handlePageButton}>Next</button>
+        <button
+          value={pageNumber > 1 ? pageNumber - 1 : 1}
+          className="pageButton"
+          disabled={pageNumber < 2 ? true : false}
+          onClick={handlePageButton}
+        >
+          {pageNumber === 1 ? null : "Prev"}
+        </button>
+        {pageButtons.map((pNum) => {
+          return (
+            <button
+              key={`page${pNum}`}
+              value={pNum}
+              className="pageButton"
+              disabled={pageNumber === pNum ? true : false}
+              onClick={handlePageButton}
+            >
+              "{pNum}"
+            </button>
+          );
+        })}
+        <div className="currentPage">
+          <button
+            className="pageNum"
+            onClick={handlePageButton}
+            value={pageNumber > 2 ? pageNumber - 2 : 1}
+          >
+            {pageNumber > 2 ? `${pageNumber - 2},` : null}
+          </button>
+          <button
+            className="pageNum"
+            onClick={handlePageButton}
+            value={pageNumber > 1 ? pageNumber - 1 : 1}
+          >
+            {pageNumber > 1 ? `${pageNumber - 1},` : null}
+          </button>
+          <button
+            className="pageNum"
+            id="currentPage"
+            onClick={() => setPageNumber(pageNumber)}
+          >{` ${pageNumber}`}</button>
+          <button
+            className="pageNum"
+            onClick={handlePageButton}
+            value={pageNumber >= 1 ? pageNumber + 1 : null}
+          >
+            {pageNumber + 1 <= totalPageCount ? `,${pageNumber + 1}` : null}
+          </button>
+          <button
+            className="pageNum"
+            onClick={handlePageButton}
+            value={pageNumber >= 1 ? pageNumber + 2 : null}
+          >
+            {pageNumber + 2 <= totalPageCount ? `,${pageNumber + 2}` : null}
+          </button>
+        </div>
+        <button
+          value={
+            pageNumber * resultsPerPage < allRoutines.length
+              ? pageNumber + 1
+              : pageNumber
+          }
+          className="pageButton"
+          disabled={allRoutines.length < pageNumber * resultsPerPage}
+          onClick={handlePageButton}
+        >
+          Next
+        </button>
       </div>
     </div>
   );
 };
-
 
 export default Routines;
