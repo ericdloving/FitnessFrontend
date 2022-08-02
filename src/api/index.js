@@ -43,10 +43,12 @@ export async function registerPerson(event) {
 
   localStorage.setItem("token", token);
 }
-// export async function name () {
-//     try {
-//         return
-//     } catch (error) {
-//         throw error
-//     }
-// }
+export async function getActivities () {
+    try {
+      const response = await fetch(`${BASE}/activities`);
+      const activities = await response.json();
+      return activities;
+    } catch (error) {
+        throw error
+    }
+}
