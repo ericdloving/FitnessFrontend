@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { getRoutines } from "../api";
 import "./tabs.css";
@@ -84,6 +83,13 @@ const Routines = () => {
         <RoutineActivities selectedRoutine={selectedRoutine} showModal={showModal} setShowModal={setShowModal}/>
     </div></Modal>
       <div id="pageButtonContainer">
+      <button
+            className="pageNum"
+            onClick={handlePageButton}
+            value={pageNumber >= 1 ? 1 : null}
+          >
+            {pageNumber >= 1 ? "First" : null}
+        </button>
         <button
           value={pageNumber > 1 ? pageNumber - 1 : 1}
           className="pageButton"
@@ -151,6 +157,13 @@ const Routines = () => {
           onClick={handlePageButton}
         >
           Next
+        </button>
+        <button
+            className="pageNum"
+            onClick={handlePageButton}
+            value={pageNumber >= 1 ?  totalPageCount  : null}
+          >
+            {pageNumber <= totalPageCount ? "Last" : null}
         </button>
       </div>
     </div>
