@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const MyRoutines = (props) => {
     return (
-        <div>
+        <div className="tab1Bdy">
             <h1>MyRoutines</h1>
         </div>
     )

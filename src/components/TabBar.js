@@ -42,7 +42,7 @@ const TabBar = ({loggedIn,setLoggedIn})=>{
         className={selectedTab==="3" ? "tab active": "tab"} 
         id="tab3" 
         onClick={handleTabClick} 
-        value="3">Tab 3
+        value="3">My Routines
         </button>
         <button 
         className={selectedTab==="4" ? "tab active": "tab"} 

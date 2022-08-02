@@ -14,6 +14,7 @@ const Routines = () => {
   const resultsPerPage = 24;
   const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
   let pageButtons = [];
+  console.log(totalPageCount, "this is the master")
 
   async function fetchRoutines() {
     const returnRoutines = await getRoutines();
@@ -136,14 +137,14 @@ const Routines = () => {
             onClick={handlePageButton}
             value={pageNumber >= 1 ? pageNumber + 1 : null}
           >
-            {pageNumber + 1 <= totalPageCount ? `,${pageNumber + 1}` : null}
+            {pageNumber + 1 < totalPageCount ? `,${pageNumber + 1}` : null}
           </button>
           <button
             className="pageNum"
             onClick={handlePageButton}
-            value={pageNumber >= 1 ? pageNumber + 2 : null}
+            value={pageNumber <= totalPageCount ? pageNumber + 2 : null}
           >
-            {pageNumber + 2 <= totalPageCount ? `,${pageNumber + 2}` : null}
+            {pageNumber + 2 < totalPageCount ? `,${pageNumber + 2}` : null}
           </button>
         </div>
         <button
@@ -161,7 +162,7 @@ const Routines = () => {
         <button
             className="pageNum"
             onClick={handlePageButton}
-            value={pageNumber >= 1 ?  totalPageCount  : null}
+            value={pageNumber >= 1 ?  totalPageCount - 1  : null}
           >
             {pageNumber <= totalPageCount ? "Last" : null}
         </button>
