@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import { getRoutines } from "../api";
 import "./tabs.css";
 import "./routines.css";
@@ -8,6 +9,7 @@ const Routines = () => {
   const [allRoutines, setAllRoutines] = useState([]);
   const [paginatedRoutines, setPaginatedRoutines] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [showModal,setShowModal] = useState(false)
   const resultsPerPage = 24;
   const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
   let pageButtons = [];
@@ -74,20 +76,37 @@ const Routines = () => {
               <p>Name: {routine.name}</p>
               <p>Goal: {routine.goal}</p>
               <p>Creator: {routine.creatorName}</p>
+              <button onClick={()=>{setModal(true)}}>View Activities</button>
 
               {activities.map((activity, index) => {
                 console.log(activity.routineId, "who is in my house");
                 console.log(activity, "I've got a shake weight");
                 console.log(routine.id, "im the guy");
                 console.log(activity.count, "how many in my house");
-                if (routine.id === activity.Id) {//This is broken on purpose for right now
-                  return [
-                    <div key={index}>
-                      <p>Count: {activity.count}</p>,
-                      <p>Description: {activity.description}</p>,
-                      <p>ID: {activity.routineId}</p>
-                    </div>,
-                  ];
+                if (routine.id === activity.Id) {
+                  //This is broken on purpose for right now
+                  return (
+                    <Modal show={showModal} onHide={()=>{setModal(false)}}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Activities</Modal.Title>
+                      </Modal.Header>
+
+                      <Modal.Body>
+                          [
+                      <div key={index}>
+                        <p>Count: {activity.count}</p>,
+                        <p>Description: {activity.description}</p>,
+                        <p>ID: {activity.routineId}</p>
+                      </div>,
+                          ]
+                      </Modal.Body>
+
+                      <Modal.Footer>
+                        <Button variant="secondary">Close</Button>
+                        <Button variant="primary">Save changes</Button>
+                      </Modal.Footer>
+                    </Modal>
+                  );
                 }
               })}
             </div>

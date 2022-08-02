@@ -12,16 +12,11 @@
   flex-direction: row;
   flex-wrap:wrap;
   justify-content: center;
+  height: 100vh;
   
 }
 
-#pageButtonContainer{
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    position: absolute;
-    bottom: 0px;
-}
+
 
 #currentPage{
     color: green;
