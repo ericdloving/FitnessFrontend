@@ -7,14 +7,28 @@
   width: 25vw;
 }
 
-/* .routines {
-    display: inline-grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1vw;
-   } */
-
 .routines {
   display:flex;
   flex-direction: row;
   flex-wrap:wrap;
+  justify-content: center;
+  
+}
+
+#pageButtonContainer{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    position: absolute;
+    bottom: 0px;
+}
+
+#currentPage{
+    color: green;
+}
+.pageNum,.pageButton{
+    background-color: white;
+}
+.pageNum:hover,.pageButton:hover{
+    text-decoration: underline green;
 }

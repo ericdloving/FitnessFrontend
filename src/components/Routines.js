@@ -9,6 +9,7 @@ const Routines = () => {
   const [paginatedRoutines, setPaginatedRoutines] = useState([]);
   const [pageNumber, setPageNumber] = useState(1)
   const resultsPerPage = 24;
+  const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
   let pageButtons=[]
 
   async function fetchRoutines() {
@@ -51,7 +52,7 @@ const Routines = () => {
 const getActivity = () =>{
   allRoutines.map((routine,index) => {
     routine.activities.map((activity) => {
-      console.log(activity, "is this the sauce?")
+      // console.log(activity, "is this the sauce?")
       if(routine.id === activity.routineId){
         return(
       <p>Activities: {activity}</p>
@@ -63,7 +64,6 @@ const getActivity = () =>{
 
 const handlePageButton = (event)=> {
     setPageNumber(parseInt(event.target.value));
-    alert(event.target.value);
     console.log(`Page ${pageNumber} selected`)
 }
   return (
@@ -85,7 +85,7 @@ const handlePageButton = (event)=> {
           <button value={pageNumber > 1 ? pageNumber - 1 : 1}
                 className="pageButton"
                 disabled={pageNumber < 2 ? true:false}
-                onClick = {handlePageButton}>Prev</button>
+                onClick = {handlePageButton}>{(pageNumber === 1)? null : "Prev"}</button>
           {pageButtons.map((pNum)=> {
               return (
                   <button key={`page${pNum}`}
@@ -96,11 +96,17 @@ const handlePageButton = (event)=> {
                        "{pNum}"</button>
               )
           })}
+          <div className="currentPage">
+          <button className="pageNum" onClick = {handlePageButton} value={pageNumber > 2 ? pageNumber - 2 : 1}>{(pageNumber > 2) ? `${pageNumber - 2 },` : null}</button>
+          <button className="pageNum" onClick = {handlePageButton} value={pageNumber > 1 ? pageNumber - 1 : 1}>{(pageNumber > 1) ? `${pageNumber - 1 },` : null}</button>
+          <button className="pageNum" id="currentPage" onClick = {()=>setPageNumber(pageNumber)}>{` ${ pageNumber}`}</button>
+          <button className="pageNum" onClick = {handlePageButton} value={pageNumber >= 1 ? pageNumber + 1 : null}>{(pageNumber+1 <= totalPageCount)?`,${pageNumber + 1}`: null}</button>
+          <button className="pageNum" onClick = {handlePageButton} value={pageNumber >= 1 ? pageNumber + 2 : null}>{(pageNumber+2 <= totalPageCount)?`,${pageNumber + 2}`: null}</button>
+          </div>
           <button value={pageNumber * resultsPerPage < allRoutines.length ? pageNumber+1 : pageNumber}
            className = "pageButton"
            disabled = {allRoutines.length < pageNumber * resultsPerPage}
            onClick = {handlePageButton}>Next</button>
-          
       </div>
     </div>
   );
