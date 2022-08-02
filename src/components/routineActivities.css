@@ -1,9 +1,33 @@
 .modal{
-    background-color: blue;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    align-content:center;
     color: white;
     text-decoration: underline;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 35px;
+    width: 100vw;
+    height: 100vh;
+    overflow-y:auto;
+}
+
+.routineDetails {
+    display:flex;
+
+    justify-items:center;
+    flex-direction:column;
+
+
+    border: 1px solid black;
     width: 75vw;
-    height: 50vh;
+    height: 75vh;
+    background-color: white;
+    color: black;
+}
+
+.routineActivity {
+    border: 1px solid black;
+    width: 80%;
 }

@@ -26,7 +26,6 @@ const Routines = () => {
 
 
   useEffect(() => {
-    console.log(selectedRoutine, "sail the seven seas")
     if(!showModal){
       setShowModal(true)
     }
@@ -38,12 +37,10 @@ const Routines = () => {
      & gets a new slice every time the page number changes
      & calls to recalculate page navigation buttons */
   useEffect(() => {
-    console.log(allRoutines.length, "ALLROUTINES");
     const startIndex = (pageNumber - 1) * resultsPerPage;
     setPaginatedRoutines(
       allRoutines.slice(startIndex, startIndex + resultsPerPage - 1)
     );
-    console.log(paginatedRoutines, "paginated");
     buildPageButtons(pageNumber);
   }, [pageNumber, allRoutines]);
 
@@ -64,7 +61,6 @@ const Routines = () => {
   }
   const handlePageButton = (event) => {
     setPageNumber(parseInt(event.target.value));
-    console.log(`Page ${pageNumber} selected`);
   };
   return (
     <div className="routines">

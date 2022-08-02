@@ -12,8 +12,6 @@ const TabBar = ({loggedIn,setLoggedIn})=>{
 
     const handleTabClick = (event)=>{
         setSelectedTab(event.target.value);
-        console.log(event.target.value);
-        console.log(selectedTab);
     }
     const handleLoginTab = (event) =>{
        if (loggedIn) { 
