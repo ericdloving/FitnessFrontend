@@ -4,8 +4,8 @@ import "./login.css"
 import "./TabBar.css"
 import {login} from "../api"
 
-const Login = ({setLoggedIn,loggedIn}) => {
-    const [username, setUsername] = useState("");
+const Login = ({setLoggedIn,loggedIn, username, setUsername}) => {
+    
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
@@ -14,10 +14,9 @@ const Login = ({setLoggedIn,loggedIn}) => {
         try {
         event.preventDefault();
         const token = await login(username, password);
+        
         if(token){
         localStorage.setItem("token", token);
-        setUsername("")
-        setPassword("")
         setLoggedIn(true)
         navigate("/Tab1")
         }

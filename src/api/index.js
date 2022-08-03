@@ -8,6 +8,25 @@ export async function getRoutines() {
     throw error;
   }
 }
+
+export async function getRoutinesByUser(username, token) {
+  try{
+    console.log(username,"USERNAME INSIDE API GETTER")
+    // if (token) {
+    const response = await fetch(`${BASE}/users/${username}/routines`, {    
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token ? token : ""}`
+      },
+    })
+
+    const routines = await response.json();
+    return routines;
+
+}catch(error) {throw error}
+
+
+}
 export async function login(username, password) {
   const request = {
     method: "POST",
