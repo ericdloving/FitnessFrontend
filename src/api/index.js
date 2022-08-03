@@ -45,6 +45,23 @@ export async function createUserRoutine(name,goal,isPublic,token){
     throw error
   }
 }
+
+
+export async function deleteUserRoutine(token,routineId){
+  try {
+    const response = await fetch( `${BASE}/routines/${routineId}`,{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }})
+    const deletedRoutine = await response.json();
+    return deletedRoutine
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function login(username, password) {
   const request = {
     method: "POST",
