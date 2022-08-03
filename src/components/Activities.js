@@ -32,7 +32,7 @@ const Activities = () =>{
         <div className="activities">
             {paginatedActivities.length ? paginatedActivities.map((activity)=>{
                 return(
-                    <div className="activity">
+                    <div className="activity" key={activity.id}>
                         <p>Id: {activity.id}</p>
                         <p>Name: {activity.name}</p>
                         <p>{activity.description}</p>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { getRoutines } from "../api";
-import "./tabs.css";
+import "./TabBar.css";
 import "./routines.css";
 import {RoutineActivities} from "./";
 

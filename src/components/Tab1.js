@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import {Link} from "react-router-dom";
-import "./tabs.css"
+import "./TabBar.css"
 
 const Tab1 = () => {
     const [isClicked,setIsClicked] = useState(false)
