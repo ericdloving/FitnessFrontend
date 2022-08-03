@@ -26,7 +26,7 @@ const Routines = () => {
 
 
   useEffect(() => {
-    if(!showModal){
+    if(!showModal && selectedRoutine){
       setShowModal(true)
     }
 
@@ -64,6 +64,9 @@ const Routines = () => {
   };
   return (
     <div className="routines">
+       <Modal show={showModal} className="modal"><div>
+        <RoutineActivities selectedRoutine={selectedRoutine} setShowModal={setShowModal}/>
+    </div></Modal>
       {paginatedRoutines.length ? (
         paginatedRoutines.map((routine) => {
           return (
@@ -80,9 +83,7 @@ const Routines = () => {
       ) : (
         <h3>There are no routines to display</h3>
       )}
-      <Modal show={showModal} className="modal"><div>
-        <RoutineActivities selectedRoutine={selectedRoutine} showModal={showModal} setShowModal={setShowModal}/>
-    </div></Modal>
+     
       <div id="pageButtonContainer">
       <button
             className="pageNum"

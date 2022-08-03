@@ -1,5 +1,7 @@
 .modal{
     display:flex;
+    position:absoulte;
+    z-index: 0;
     flex-direction: column;
     justify-content: center;
     align-items:center;
@@ -10,10 +12,15 @@
     font-size: 35px;
     width: 100vw;
     height: 100vh;
-    overflow-y:auto;
+    text-decoration: none;
+
 }
 
 .routineDetails {
+    display:block;
+    resize:both;
+    z-index: 5;
+    opacity: 100%;
     display:flex;
 
     justify-items:center;
@@ -21,13 +28,56 @@
 
 
     border: 1px solid black;
-    width: 75vw;
-    height: 75vh;
+    width: 33vw;
+    height: 50vh;
     background-color: white;
     color: black;
+    box-shadow: 10px 10px 5px black;
+    overflow-y:scroll;
 }
 
 .routineActivity {
+    text-decoration:none;
     border: 1px solid black;
     width: 80%;
+
+}
+
+.routineDetailsTitle {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+    background:  #062f4f;
+    color: white;
+    font-size: 24px;
+    align-items: left;
+
+}
+
+.routineDetails {
+    background-color: lightblue;
+    font-size: 18px;
+    display:flex;
+    align-items: center;
+}
+
+.routineActivity {
+    font-size: 16px;
+    text-decoration:none;
+}
+
+.routineActivityDetails.title {
+    font-weight: bold;
+    font-size: 18px;
+    
+}
+
+#closeButton {
+    z-index:100;
+    width: 150px;
+    height: 40px;
+    border: 2px solid red;
+
 }
