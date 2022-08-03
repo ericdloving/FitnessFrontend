@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import "./routineActivities.css";
-import { getRoutinesByUser } from "../api";
+import { getRoutinesByUser, whoAmI } from "../api";
 import { CreateRoutine } from "./";
 
 const MyRoutines = ({ username, setUsername }) => {
@@ -10,45 +10,55 @@ const MyRoutines = ({ username, setUsername }) => {
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null)
   const token = localStorage.getItem("token");
-
   async function fetchMyRoutines(username) {
 
     const returnRoutines = await getRoutinesByUser(username, token);
     setMyRoutines(returnRoutines);
     console.log(returnRoutines)
   }
-
   useEffect(() => {
-    fetchMyRoutines(username);
+    async function fetchGetMe() {
+      const me = await whoAmI(localStorage.getItem("token"))
+      const name = me.username
+      console.log(name, "whats in here");
+      fetchMyRoutines(name);}
+
+    
+    fetchGetMe();
   
-  }, []);
+  }, [username]);
 
   useEffect(()=> {
     if(selectedRoutine && !showDetailsModal) setShowDetailsModal(true)
     console.log(selectedRoutine, showDetailsModal)
   },[selectedRoutine])
 
+  useEffect(()=> {
+    if(selectedRoutine && !showDetailsModal) setShowDetailsModal(true)
+    console.log(selectedRoutine, showDetailsModal)
+  },[selectedRoutine])
 
+function handleClickSummary(){
+  setShowCreateModal(true);
+}
   return (
     <div className="tab1Bdy">
-      <button
-        onClick={() => {
-          setShowCreateModal(true);
-        }}
-      >
-        Create Routine
-      </button>
+      
       <Modal show={showCreateModal} className="modal">
         <CreateRoutine setShowCreateModal={setShowCreateModal} />
       </Modal>
       <div>
+        <div className="routine"
+             onClick = {handleClickSummary}>
+               <p>Welcome, {username}!  You have {myRoutines.length || "no"} routines.Click here to create a new one.</p>
+             </div>
         {myRoutines.length
-          ? myRoutines.map((routine) => {
+          ?
+          myRoutines.map((routine) => {
               return (
                 <div
                   className="routine"
-                  key={`Routine${routine.id}`}
-                  onClick={()=>{
+                  key={`Routine${routine.id}`}onClick={()=>{
                     setSelectedRoutine(routine)
                   }}
                    
