@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getRoutinesByUser } from "../api";
+import { CreateRoutine } from "./";
 
 
 const MyRoutines = ({username, setUsername}) => {
@@ -18,7 +19,21 @@ const MyRoutines = ({username, setUsername}) => {
 
     return (
         <div className="tab1Bdy">
-            <h1>MyRoutines</h1>
+            <CreateRoutine />
+            <div>
+                {myRoutines.map((routine) => {
+                    return (
+                        <div className="routine" key={`Routine${routine.id}`}onClick={()=>{
+                        }}>
+                          <p>Name: {routine.name}</p>
+                          <p>Goal: {routine.goal}</p>
+                          <p>Creator: {routine.creatorName}</p>
+                          
+                        </div>
+                      );
+
+                })}
+            </div>
         </div>
     )
 }

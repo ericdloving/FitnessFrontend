@@ -11,8 +11,6 @@ export async function getRoutines() {
 
 export async function getRoutinesByUser(username, token) {
   try{
-    console.log(username,"USERNAME INSIDE API GETTER")
-    // if (token) {
     const response = await fetch(`${BASE}/users/${username}/routines`, {    
       headers: {
         'Content-Type': 'application/json',
@@ -24,8 +22,27 @@ export async function getRoutinesByUser(username, token) {
     return routines;
 
 }catch(error) {throw error}
+}
 
 
+export async function createUserRoutine(name,goal,isPublic,token){
+  try {
+    const response = await fetch( `${BASE}/routines`,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        goal: goal,
+        isPublic: isPublic ? true : null
+      })})
+    const newRoutine = await response.json();
+    return newRoutine
+  } catch (error) {
+    throw error
+  }
 }
 export async function login(username, password) {
   const request = {
