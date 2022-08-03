@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { createUserRoutine } from "../api";
 
 
-const createRoutine = ({setShowModal}) => {
+const createRoutine = ({setShowCreateModal}) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(null);
@@ -29,9 +29,9 @@ const createRoutine = ({setShowModal}) => {
 
   return (
     <div className="createForm">
-        <p className="xButton" onClick={()=>setShowModal(false)}>❌</p>
+        <p className="xButton" onClick={()=>setShowCreateModal(false)}>❌</p>
       <h1 className="title">Add New Routine</h1>
-      <form id="loginForm" onSubmit={handleSubmit}>
+      <form id="loginForm">
         <div className="routine">
           <input
             className="input"
@@ -53,7 +53,7 @@ const createRoutine = ({setShowModal}) => {
             <input type="checkbox" onChange={isPublicChange} />
             Public
             </label>
-            <button type="submit">CREATE</button>
+            <button type="submit" onClick={handleSubmit}>CREATE</button>
         </div>
       </form>
     </div>

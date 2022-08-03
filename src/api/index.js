@@ -25,6 +25,7 @@ export async function getRoutinesByUser(username, token) {
 }
 
 
+
 export async function createUserRoutine(name,goal,isPublic,token){
   try {
     const response = await fetch( `${BASE}/routines`,{
@@ -78,6 +79,17 @@ export async function registerPerson(event) {
   const token = result.token;
 
   localStorage.setItem("token", token);
+}
+
+export async function whoAmI(token) {
+  try {
+    const response = await fetch(`${BASE}/users/me`, {    
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+    })
+  }catch (error){throw error}
 }
 export async function getActivities () {
     try {

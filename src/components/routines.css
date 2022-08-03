@@ -6,6 +6,9 @@
   padding: 10px;
   width: 25vw;
 }
+.routine:hover{
+  box-shadow: 0px 15px 10px -15px red;
+}
 
 .routines {
   display:flex;
