@@ -27,12 +27,12 @@
     flex-direction:column;
 
 
-    border: 1px solid black;
+    border: 1px solid gray;
     width: 33vw;
     height: 50vh;
     background-color: white;
     color: black;
-    box-shadow: 10px 10px 5px black;
+    box-shadow: 8px 8px 8px black;
     overflow-y:scroll;
 }
 
@@ -63,11 +63,14 @@
     font-size: 18px;
     display:flex;
     align-items: center;
+    padding: 3px;
 }
 
 .routineActivity {
     font-size: 16px;
     text-decoration:none;
+    margin-top:4px;
+    border:1px solid lightgray
 }
 
 .routineActivityDetails.title {
