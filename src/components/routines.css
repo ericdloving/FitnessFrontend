@@ -29,3 +29,7 @@
 .pageNum:hover,.pageButton:hover{
     text-decoration: underline green;
 }
+
+.pageButtonContainer {
+  width: 100vw;
+}
