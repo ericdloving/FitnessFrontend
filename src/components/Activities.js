@@ -1,51 +1,78 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getActivities } from "../api";
-import "./activities.css"
+import Modal from "react-bootstrap/Modal";
+import "./routines.css";
+import { CreateActivity } from ".";
 
-const Activities = () =>{
-    const [allActivities, setAllActivities] = useState([]);
-    const [paginatedActivities, setPaginatedActivities] = useState([]);
-    const [pageNumber, setPageNumber] = useState(1);
-    const resultsPerPage = 24;
-    const totalPageCount = Math.ceil(allActivities.length / resultsPerPage);
+const Activities = ({ username }) => {
+  const [allActivities, setAllActivities] = useState([]);
+  const [paginatedActivities, setPaginatedActivities] = useState([]);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [showModal, setShowModal] = useState(false);
+  const resultsPerPage = 24;
+  const totalPageCount = Math.ceil(allActivities.length / resultsPerPage);
 
-    useEffect(() => {
-        async function fetchActivities() {
-            const returnActivities = await getActivities();
-            setAllActivities(returnActivities);
-          }
-        fetchActivities();
-      }, []);
+  useEffect(() => {
+    async function fetchActivities() {
+      const returnActivities = await getActivities();
+      setAllActivities(returnActivities);
+    }
+    fetchActivities();
+  }, []);
 
-    useEffect(() => {
-        const startIndex = (pageNumber - 1) * resultsPerPage;
-        setPaginatedActivities(
-          allActivities.slice(startIndex, startIndex + resultsPerPage - 1)
-        );
-      }, [pageNumber, allActivities]);
+  useEffect(() => {
+    const startIndex = (pageNumber - 1) * resultsPerPage;
+    setPaginatedActivities(
+      allActivities.slice(startIndex, startIndex + resultsPerPage - 1)
+    );
+  }, [pageNumber, allActivities]);
 
-      const handlePageButton = (event) => {
-        setPageNumber(parseInt(event.target.value));
-      };
+  function handleClickSummary(){
+    setShowModal(true);
+  }
 
-    return(
-        <div className="activities">
-            {paginatedActivities.length ? paginatedActivities.map((activity)=>{
-                return(
-                    <div className="activity" key={activity.id}>
-                        <p>Id: {activity.id}</p>
-                        <p>Name: {activity.name}</p>
-                        <p>{activity.description}</p>
-                    </div>
-                )
-            }):null}
-            <div id="pageButtonContainer">
+  const handlePageButton = (event) => {
+    setPageNumber(parseInt(event.target.value));
+  };
+
+  return (
+    <div className="routines">
+      <div className="routine">
+        {username ? (
+          <p onClick = {handleClickSummary}>
+            Welcome, {username}! If you would like to create a new activity
+            click here.
+          </p>
+        ) : (
+          <p>
+            Welcome, there are {allActivities.length || "no"} activities for you
+            to peruse.
+          </p>
+        )}
+      </div>
+      <Modal show={showModal} className="modal">
+        <div>
+        <CreateActivity setShowModal={setShowModal}/>
+        </div>
+      </Modal>
+      {paginatedActivities.length
+        ? paginatedActivities.map((activity) => {
+            return (
+              <div className="routine" key={activity.id}>
+                <p>Id: {activity.id}</p>
+                <p>Name: {activity.name}</p>
+                <p>{activity.description}</p>
+              </div>
+            );
+          })
+        : null}
+      <div id="pageButtonContainer">
         <button
-            className="pageNum"
-            onClick={handlePageButton}
-            value={pageNumber >= 1 ? 1 : null}
-          >
-            {pageNumber >= 1 ? "First" : null}
+          className="pageNum"
+          onClick={handlePageButton}
+          value={pageNumber >= 1 ? 1 : null}
+        >
+          {pageNumber >= 1 ? "First" : null}
         </button>
         <button
           value={pageNumber > 1 ? pageNumber - 1 : 1}
@@ -55,8 +82,6 @@ const Activities = () =>{
         >
           {pageNumber === 1 ? null : "Prev"}
         </button>
-
-
 
         <div className="currentPage">
           <button
@@ -106,14 +131,14 @@ const Activities = () =>{
           Next
         </button>
         <button
-            className="pageNum"
-            onClick={handlePageButton}
-            value={pageNumber >= 1 ?  totalPageCount  : null}
-          >
-            {pageNumber <= totalPageCount ? "Last" : null}
+          className="pageNum"
+          onClick={handlePageButton}
+          value={pageNumber >= 1 ? totalPageCount : null}
+        >
+          {pageNumber <= totalPageCount ? "Last" : null}
         </button>
       </div>
-        </div>
-    )
-}
-export default Activities
+    </div>
+  );
+};
+export default Activities;

@@ -1,4 +1,7 @@
 const BASE = `http://fitnesstrac-kr.herokuapp.com/api`;
+
+
+//Routine functions
 export async function getRoutines() {
   try {
     const response = await fetch(`${BASE}/routines`);
@@ -82,6 +85,40 @@ export async function deleteUserRoutine(token,routineId){
   }
 }
 
+//Activity functions
+export async function getActivities () {
+    try {
+      const response = await fetch(`${BASE}/activities`);
+      const activities = await response.json();
+      return activities;
+    } catch (error) {
+        throw error
+    }
+}
+
+export async function createUserActivity(name,description,token){
+  try {
+    const response = await fetch( `${BASE}/activities`,{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        description: description,
+      })})
+    const newActivity = await response.json();
+    return newActivity
+  } catch (error) {
+    throw error
+  }
+}
+
+
+
+
+//User functions
 export async function login(username, password) {
   const request = {
     method: "POST",
@@ -130,12 +167,4 @@ export async function whoAmI(token) {
     return result;
   }catch (error){throw error}
 }
-export async function getActivities () {
-    try {
-      const response = await fetch(`${BASE}/activities`);
-      const activities = await response.json();
-      return activities;
-    } catch (error) {
-        throw error
-    }
-}
+
