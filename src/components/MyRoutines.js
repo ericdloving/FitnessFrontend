@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import "./routineActivities.css"
 import { getRoutinesByUser } from "../api";
 import { CreateRoutine } from "./";
 
 
 const MyRoutines = ({username, setUsername}) => {
     const [myRoutines, setMyRoutines] = useState([]);
+    const [showModal,setShowModal] = useState(false)
     const token = localStorage.getItem("token")
 
     async function fetchMyRoutines() {
         const returnRoutines = await getRoutinesByUser(username, token);
         setMyRoutines(returnRoutines);
-        console.log(myRoutines,'asdf')
       }
       useEffect(() => {
         fetchMyRoutines();
@@ -19,9 +21,13 @@ const MyRoutines = ({username, setUsername}) => {
 
     return (
         <div className="tab1Bdy">
-            <CreateRoutine />
+            <button onClick={()=>{setShowModal(true)}}>Create Routine</button>
+            <Modal show={showModal}  className="modal">
+            <CreateRoutine setShowModal={setShowModal}/>
+            </Modal>
             <div>
-                {myRoutines.map((routine) => {
+                
+                { myRoutines.length ? myRoutines.map((routine) => {
                     return (
                         <div className="routine" key={`Routine${routine.id}`}onClick={()=>{
                         }}>
@@ -32,7 +38,7 @@ const MyRoutines = ({username, setUsername}) => {
                         </div>
                       );
 
-                })}
+                } ): null}
             </div>
         </div>
     )

@@ -8,7 +8,6 @@ const Activities = () =>{
     const [pageNumber, setPageNumber] = useState(1);
     const resultsPerPage = 24;
     const totalPageCount = Math.ceil(allActivities.length / resultsPerPage);
-    console.log(totalPageCount, "this is chief")
 
     useEffect(() => {
         async function fetchActivities() {

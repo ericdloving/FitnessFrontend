@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createUserRoutine } from "../api";
 
-const createRoutine = () => {
+
+const createRoutine = ({setShowModal}) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(null);
@@ -28,9 +29,10 @@ const createRoutine = () => {
 
   return (
     <div className="createForm">
+        <p className="xButton" onClick={()=>setShowModal(false)}>❌</p>
       <h1 className="title">Add New Routine</h1>
       <form id="loginForm" onSubmit={handleSubmit}>
-        <div className="boxes">
+        <div className="routine">
           <input
             className="input"
             type="text"

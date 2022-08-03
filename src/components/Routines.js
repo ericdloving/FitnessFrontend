@@ -14,7 +14,6 @@ const Routines = () => {
   const resultsPerPage = 24;
   const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
   let pageButtons = [];
-  console.log(totalPageCount, "this is the master")
 
   async function fetchRoutines() {
     const returnRoutines = await getRoutines();

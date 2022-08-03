@@ -1,6 +1,6 @@
 .modal{
     display:flex;
-    position:absoulte;
+    position:absolute;
     z-index: 0;
     flex-direction: column;
     justify-content: center;

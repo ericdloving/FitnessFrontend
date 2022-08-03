@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import React from "react";
 import "./routineActivities.css";
 
-const RoutineActivities = ({ selectedRoutine, showModal, setShowModal }) => {
+const RoutineActivities = ({ selectedRoutine, setShowModal }) => {
   return (
     <div className="modal">
       {selectedRoutine ? (
