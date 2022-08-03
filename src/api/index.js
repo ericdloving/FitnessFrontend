@@ -89,6 +89,8 @@ export async function whoAmI(token) {
         Authorization: `Bearer ${token}`
       },
     })
+    const result = await response.json();
+    return result;
   }catch (error){throw error}
 }
 export async function getActivities () {

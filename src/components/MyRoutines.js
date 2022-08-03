@@ -7,15 +7,26 @@ import { CreateRoutine } from "./";
 const MyRoutines = ({ username, setUsername }) => {
   const [myRoutines, setMyRoutines] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [selectedRoutine, setSelectedRoutine] = useState(null)
   const token = localStorage.getItem("token");
 
-  async function fetchMyRoutines() {
+  async function fetchMyRoutines(username) {
+
     const returnRoutines = await getRoutinesByUser(username, token);
     setMyRoutines(returnRoutines);
+    console.log(returnRoutines)
   }
+
   useEffect(() => {
-    fetchMyRoutines();
+    fetchMyRoutines(username);
+  
   }, []);
+
+  useEffect(()=> {
+    if(selectedRoutine && !showDetailsModal) setShowDetailsModal(true)
+    console.log(selectedRoutine, showDetailsModal)
+  },[selectedRoutine])
 
 
   return (
@@ -37,7 +48,10 @@ const MyRoutines = ({ username, setUsername }) => {
                 <div
                   className="routine"
                   key={`Routine${routine.id}`}
-                  onClick={setSelectedRoutine(routine)} //need to add useEffect to trigger appropriate response to a change in selectedRoutine**********************************************
+                  onClick={()=>{
+                    setSelectedRoutine(routine)
+                  }}
+                   
                 >
                   <p>Name: {routine.name}</p>
                   <p>Goal: {routine.goal}</p>
@@ -45,8 +59,9 @@ const MyRoutines = ({ username, setUsername }) => {
                 </div>
               );
             })
-          : null}
+          : <p>No routines to display</p>}
       </div>
+      <p>{username} there should be a username</p>
     </div>
   );
 };
