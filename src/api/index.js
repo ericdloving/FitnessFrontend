@@ -47,6 +47,26 @@ export async function createUserRoutine(name,goal,isPublic,token){
 }
 
 
+export async function editUserRoutine(name,goal,isPublic,token,routineId){
+  try {
+    const response = await fetch( `${BASE}/routines/${routineId}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        goal: goal,
+        isPublic: isPublic ? true : null
+      })})
+    const updatedRoutine = await response.json();
+    return updatedRoutine
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function deleteUserRoutine(token,routineId){
   try {
     const response = await fetch( `${BASE}/routines/${routineId}`,{

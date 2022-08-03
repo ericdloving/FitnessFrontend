@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import "./routineActivities.css";
-import { getRoutinesByUser, whoAmI, deleteUserRoutine } from "../api";
-import { CreateRoutine } from "./";
+import { getRoutinesByUser, whoAmI,editUserRoutine, deleteUserRoutine } from "../api";
+import { CreateRoutine,RoutineEdit } from "./";
 
 
 const MyRoutines = ({ username, setUsername }) => {
   const [myRoutines, setMyRoutines] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -29,13 +29,8 @@ const MyRoutines = ({ username, setUsername }) => {
   
   }, [username]);
 
-  useEffect(()=> {
-    if(selectedRoutine && !showDetailsModal) setShowDetailsModal(true)
-  },[selectedRoutine])
 
-  useEffect(()=> {
-    if(selectedRoutine && !showDetailsModal) setShowDetailsModal(true)
-  },[selectedRoutine])
+
 
 function handleClickSummary(){
   setShowCreateModal(true);
@@ -51,11 +46,16 @@ const deleteRoutine = async () => {
   return erasePost;}}
   
 
+
+
   return (
     <div className="tab1Bdy">
       
       <Modal show={showCreateModal} className="modal">
         <CreateRoutine setShowCreateModal={setShowCreateModal} />
+      </Modal>
+      <Modal show={showEditModal} className="modal">
+        <RoutineEdit setShowEditModal={setShowEditModal} selectedRoutine={selectedRoutine} username={username} />
       </Modal>
       <div>
         <div className="routine"
@@ -77,13 +77,13 @@ const deleteRoutine = async () => {
                   <p>Goal: {routine.goal}</p>
                   <p>Creator: {routine.creatorName}</p>
                   <button onClick={()=>deleteRoutine()}>Delete</button>
+                  <button onClick={()=>{setShowEditModal(true);setSelectedRoutine(routine)}}>Update</button>
                 </div>
                 
               );
             })
-          : <p>No routines to display</p>}
+          : null}
       </div>
-      <p>{username} there should be a username</p>
     </div>
   );
 };
