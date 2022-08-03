@@ -14,13 +14,11 @@ const MyRoutines = ({ username, setUsername }) => {
 
     const returnRoutines = await getRoutinesByUser(username, token);
     setMyRoutines(returnRoutines);
-    console.log(returnRoutines)
   }
   useEffect(() => {
     async function fetchGetMe() {
       const me = await whoAmI(localStorage.getItem("token"))
       const name = me.username
-      console.log(name, "whats in here");
       fetchMyRoutines(name);}
 
     
@@ -30,12 +28,10 @@ const MyRoutines = ({ username, setUsername }) => {
 
   useEffect(()=> {
     if(selectedRoutine && !showDetailsModal) setShowDetailsModal(true)
-    console.log(selectedRoutine, showDetailsModal)
   },[selectedRoutine])
 
   useEffect(()=> {
     if(selectedRoutine && !showDetailsModal) setShowDetailsModal(true)
-    console.log(selectedRoutine, showDetailsModal)
   },[selectedRoutine])
 
 function handleClickSummary(){

@@ -19,9 +19,7 @@ const App = () => {
   const getMe = async () => {
     try {
       const me = await whoAmI(localStorage.getItem("token"));
-      console.log("setting username:", me.username)
       setUsername(me.username)
-      console.log(`set username to ${username}`)
     } catch (error) {
       throw error;
     }
@@ -29,12 +27,8 @@ const App = () => {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-        console.log("There's a token present -- attempting to getMe")
       const me = getMe();
-      console.log(`after we get back from getMe username is ${username}`)
         setLoggedIn(true);
-        console.log(loggedIn, 'after setting to true')
-        console.log(username, 'in app useeffect')
 
     }
   }, []);

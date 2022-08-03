@@ -39,7 +39,6 @@ const Login = ({setLoggedIn,loggedIn, username, setUsername}) => {
         <form id="loginform" onSubmit={handleSubmit}>
         <div className="boxes">
             <input className="input"
-            className="input"
             type="text"
             name="username"
             placeholder="UserName"
@@ -47,7 +46,6 @@ const Login = ({setLoggedIn,loggedIn, username, setUsername}) => {
             minLength="1"
             onChange={userNameChange}/>
             <input className="input"
-            className="input"
             type="password"
             name="password"
             placeholder="Password"
