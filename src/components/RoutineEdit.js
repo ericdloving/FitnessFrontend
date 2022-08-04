@@ -10,8 +10,8 @@ const editRoutine = ({ setShowEditModal, selectedRoutine, username }) => {
   const [isPublic, setIsPublic] = useState(null);
   const [allActivities, setAllActivities] = useState([]);
   const [selectedActivityId, setSelectedActivityId] = useState(null);
-  const [count, setCount] = useState("")
-  const [duration, setDuration] = useState("")
+  const [count, setCount] = useState(0)
+  const [duration, setDuration] = useState(0)
 
   const getAllActivities = async () => {
     console.log("getallactivities")
@@ -31,15 +31,18 @@ const editRoutine = ({ setShowEditModal, selectedRoutine, username }) => {
 },[selectedRoutine])
 
 const handleSelectChange = (event) => {
-  setSelectedActivityId(event.target.value)
+  console.log(event.target.value,"pterodactyl")
+  setSelectedActivityId(parseInt(event.target.value))
   console.log(selectedActivityId,"selectedActivity")
 }
   const handleSubmit = async (event) => {
     event.preventDefault();
-    attachActivity(selectedRoutine.id,selectedActivityId,count,duration)
+    console.log("calling the function")
+    const updatedStuff = await attachActivity(selectedRoutine.id,selectedActivityId,count,duration)
+    console.log("called the function",updatedStuff)
     const token = localStorage.getItem("token");
     if (username === selectedRoutine.creatorName) {
-      alert("Routine has been Added!");
+      alert("Larry!@!");
       const updateRoutine = await editUserRoutine(
         name,
         goal,
@@ -105,13 +108,13 @@ const handleSelectChange = (event) => {
           </select>
           <input 
             className="input"
-            type="text"
+            type="number"
             name="count"
             onChange={(event)=>{setCount(event.target.value)}}
             placeholder="Count" />
           <input 
             className="input"
-            type="text"
+            type="number"
             name="duration"
             onChange={(event)=>{setDuration(event.target.value)}}
             placeholder="duration" />
