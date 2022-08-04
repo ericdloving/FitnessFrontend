@@ -70,6 +70,25 @@ export async function editUserRoutine(name,goal,isPublic,token,routineId){
   }
 }
 
+export async function editRoutineActivity(token, routineActivityId, count, duration){
+  try {
+    const response = await fetch(`${BASE}/routine_activities/${routineActivityId}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: name,
+        goal: goal,
+        isPublic: isPublic ? true : null
+      })
+    })
+    const updatedRoutineActivity = await response.json();
+    return updatedRoutineActivity;
+  }catch (error) {throw error}
+}
+
 export async function deleteUserRoutine(token,routineId){
   try {
     const response = await fetch( `${BASE}/routines/${routineId}`,{
@@ -189,3 +208,4 @@ export async function attachActivity(routineId,activityId,count,duration,token) 
     return result;
   } catch (error) {throw error}
 }
+
