@@ -34,6 +34,9 @@ const RoutineActivities = ({setSelectedRoutine, selectedRoutine, setShowEditModa
   useEffect(()=>{
     console.log(selectedRa, "i am the ra ya heard")
   },[selectedRa])
+  useEffect(()=>{
+    
+  },[selectedRoutine])
 
   
 
@@ -42,11 +45,11 @@ const RoutineActivities = ({setSelectedRoutine, selectedRoutine, setShowEditModa
 
 return (
     <div className="modal" onClick={()=> selectedRoutine.activities.length ? null : setShowEditModal(false)}>
-      {selectedRoutine && selectedRoutine.activities.length?  (
+      {selectedRoutine  ?  (
         <div className="routineDetails" >
 {/*TITLE        **********/}
           <div className={!editTitle ? "routineDetailsTitle" : "hidden"}>
-            {selectedRoutine.name} <TbEdit onClick={()=>setEditTitle(true)} /><p className="xButton" onClick={()=>setShowEditModal(false)}>❌</p>
+            {selectedRoutine.name} <TbEdit onClick={()=>setEditTitle(true)} /><p className="xButton" onClick={()=>{setShowEditModal(false); setSelectedRoutine(false)}}>❌</p>
             </div>
 
             <div className={editTitle ? "routineDetailsTitle edit" : "hidden"}>
@@ -99,14 +102,9 @@ return (
               </div>
             ) : null;
           })}
-                <button id="closeButton" onClick={() => setShowEditModal(false)}>Close</button>
+                <button id="closeButton" onClick={() => {setShowEditModal(false);setSelectedRoutine(false)}}>Close</button>
         </div>
-      ) : <div className="routineDetails" >
-        {`Sorry there aren't any activities for ${selectedRoutine.name}!`}
-        <div>
-        <center><img src="https://raw.githubusercontent.com/gist/brudnak/dbe7bcbae5a283d2f393b0bb88d0d834/raw/8efb958d79fd81630ee777d62d85bb085391ef4a/portal.gif"/></center>
-          </div>
-          </div>}
+      ) : null}
 
     </div>
   );

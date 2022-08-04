@@ -68,7 +68,7 @@ const Routines = () => {
     <div className="routines">
       <p className="routine">Welcome there are {allRoutines.length || "no"} routines! Click on one to view it's activities.</p>
        <Modal show={showModal} className="modal"><div>
-        <RoutineActivities selectedRoutine={selectedRoutine} setShowModal={setShowModal}/>
+        <RoutineActivities selectedRoutine={selectedRoutine} setSelectedRoutine={setSelectedRoutine} setShowModal={setShowModal}/>
     </div></Modal>
       {paginatedRoutines.length ? (
         paginatedRoutines.map((routine) => {

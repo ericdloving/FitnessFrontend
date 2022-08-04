@@ -6,7 +6,7 @@ import { getRoutinesByUser, whoAmI,editUserRoutine, deleteUserRoutine } from "..
 import { CreateRoutine,RoutineEdit } from "./";
 
 
-const MyRoutines = ({ username, setUsername }) => {
+const MyRoutines = ({ username }) => {
   const [myRoutines, setMyRoutines] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -60,7 +60,7 @@ const deleteRoutine = async () => {
         <CreateRoutine setShowCreateModal={setShowCreateModal} />
       </Modal>
       <Modal show={showEditModal} className="modal">
-        <RoutineEdit setShowEditModal={setShowEditModal} selectedRoutine={selectedRoutine} username={username} />
+        <RoutineEdit setShowEditModal={setShowEditModal} selectedRoutine={selectedRoutine} setSelectedRoutine={setSelectedRoutine} username={username} />
       </Modal>
       <div>
         <div className="routine"

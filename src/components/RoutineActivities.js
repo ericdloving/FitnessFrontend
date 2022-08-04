@@ -6,7 +6,7 @@ const RoutineActivities = ({ selectedRoutine,setSelectedRoutine, setShowModal })
     <div className="modal">
       {selectedRoutine && selectedRoutine.activities.length?  (
         <div className="routineDetails">
-          <div className="routineDetailsTitle">{selectedRoutine.name}<p className="xButton" onClick={()=>setShowModal(false)}>❌</p></div>
+          <div className="routineDetailsTitle">{selectedRoutine.name}<p className="xButton" onClick={()=>{setShowModal(false);setSelectedRoutine(false)}}>❌</p></div>
           <div className="routineBody">
             <p>Goal: {selectedRoutine.goal}</p>
             <p>Creator: {selectedRoutine.creatorName}</p>
