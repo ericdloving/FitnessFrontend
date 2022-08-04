@@ -1,130 +1,61 @@
-import React, { useEffect, useState } from "react";
-import { attachActivity, editUserRoutine,getActivities } from "../api";
-import MyRoutines from "./MyRoutines";
+import React, {useState} from "react";
 import "./routineActivities.css";
+import { TbEdit } from "react-icons/tb"
+import { attachActivity, editUserRoutine } from "../api";
 
+const RoutineActivities = ({ selectedRoutine, setShowEditModal }) => {
+  const [editTitle,setEditTitle] = useState(false);
+  const [title, setTitle] = useState(selectedRoutine.name)
 
-
-const editRoutine = ({ setShowEditModal, selectedRoutine, username }) => {
-  const [name, setName] = useState(selectedRoutine.length ? selectedRoutine.name : "");
-  const [goal, setGoal] = useState(selectedRoutine.length ? selectedRoutine.goal : "");
-  const [isPublic, setIsPublic] = useState(selectedRoutine.length ? selectedRoutine.isPublic :null);
-  const [allActivities, setAllActivities] = useState([]);
-  const [selectedActivityId, setSelectedActivityId] = useState(null);
-  const [count, setCount] = useState(0)
-  const [duration, setDuration] = useState(0)
-
-  const getAllActivities = async () => {
-    console.log("getallactivities")
-    try {
-      const activities = await getActivities();
-      console.log(activities);
-      setAllActivities(activities);
-    }catch(error) {throw error}
-  }
-  useEffect(() => {
-    getAllActivities()
-  },[])
-
-  useEffect(() =>{
-    setName(selectedRoutine.name)
-    setGoal(selectedRoutine.goal)
-},[selectedRoutine])
-
-const handleSelectChange = (event) => {
-  console.log(event.target.value,"pterodactyl")
-  setSelectedActivityId(parseInt(event.target.value))
-  console.log(selectedActivityId,"selectedActivity")
-}
-  const handleSubmit = async (event) => {
+  const handleTitleChange = async (event) => {
     event.preventDefault();
-    console.log("calling the function")
-    const token = localStorage.getItem("token")
-    const updatedStuff = await attachActivity(selectedRoutine.id,selectedActivityId,count,duration,token)
-    console.log("called the function",MyRoutines)
-    if (username === selectedRoutine.creatorName) {
-      alert("Larry!@!");
-      const updateRoutine = await editUserRoutine(
-        name,
-        goal,
-        isPublic,
-        token,
-        selectedRoutine.id
-      );
-
-      setShowEditModal(false);
-      return updateRoutine;
-    }
-  };
-
-  const nameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const goalChange = (event) => {
-    setGoal(event.target.value);
-  };
-
-  const isPublicChange = (event) => {
-    setIsPublic(event.target.checked);
-  };
+    console.log("HANDLE TITLE CHANGE!!!")
+    const token = localStorage.getItem("token");
+    const updateTitle = await editUserRoutine(title, selectedRoutine.goal, selectedRoutine.isPublic, token, selectedRoutine.id)
+    setEditTitle(false)
+  }
 
   return (
-    <div className="routineDetails">
-      <p className="xButton" onClick={() => setShowEditModal(false)}>
-        ❌
-      </p>
-      <form onSubmit={handleSubmit} id="loginForm">
-        <div className="routine">
-          <input
-            className="input"
-            type="text"
-            name="name"
-            defaultValue={ name}
-            onChange={nameChange}
-          />
-          <input
-            className="input"
-            type="text"
-            name="goal"
-            defaultValue={goal}
-            onChange={goalChange}
-          />
-          <label>
-            <input
-              type="checkbox"
-              onChange={isPublicChange}
-              defaultValue={
-                selectedRoutine ? selectedRoutine.isPublic : isPublic
-              }
-            />
-            Public
-          </label>
-          <select onChange = {handleSelectChange}>
-            {allActivities.map((activity)=> {
-              return (
-                <option value={activity.id} key={activity.id}>{activity.name}</option>
-              )
-            })}
-          </select>
-          <input 
-            className="input"
-            type="number"
-            name="count"
-            onChange={(event)=>{setCount(event.target.value)}}
-            placeholder="Count" />
-          <input 
-            className="input"
-            type="number"
-            name="duration"
-            onChange={(event)=>{setDuration(event.target.value)}}
-            placeholder="duration" />
-                 
-          <button type="submit">UPDATE</button>
+    <div className="modal">
+      {selectedRoutine && selectedRoutine.activities.length?  (
+        <div className="routineDetails">
+{/*TITLE        **********/}
+          <div className={!editTitle ? "routineDetailsTitle" : "hidden"}>
+            {selectedRoutine.name} <TbEdit onClick={()=>setEditTitle(true)} /><p className="xButton" onClick={()=>setShowEditModal(false)}>❌</p></div>
+
+            <div className={editTitle ? "routineDetailsTitle edit" : "hidden"}>
+            <form onSubmit={handleTitleChange}>
+            <input type="text" defaultValue={selectedRoutine.name}
+             onChange={(e)=>setTitle(e.target.value)}/>
+            <button type="submit">☑️</button><button onClick={()=>setEditTitle(false)}>❌</button>
+            </form>
+            </div>
+
+          <div className="routineBody">
+            <p>Goal: {selectedRoutine.goal}</p>
+            <p>Creator: {selectedRoutine.creatorName}</p>
+          </div>
+          {selectedRoutine.activities.map((activity) => {
+            return selectedRoutine.activities.length ? (
+              <div className="routineActivity" key={activity.id}>
+                <p className = "routineActivityDetails title" onClick = {()=>{setShowEditModal(false)}}>{activity.name}</p>
+                <p className = "routineActivitiyDetails description">{activity.description}</p>
+                <p className = "routineActivityDetails">Count: {activity.count}</p>
+                <p className = "routineActivitiyDetails">Duration: {activity.duration}</p>
+              </div>
+            ) : null;
+          })}
+                <button id="closeButton" onClick={() => setShowEditModal(false)}>Close</button>
         </div>
-      </form>
+      ) : <div className="routineDetails">
+        {`Sorry there aren't any activities for ${selectedRoutine.name}!`}
+        <div>
+        <center><img src="https://raw.githubusercontent.com/gist/brudnak/dbe7bcbae5a283d2f393b0bb88d0d834/raw/8efb958d79fd81630ee777d62d85bb085391ef4a/portal.gif"/></center>
+          </div>
+          </div>}
+
     </div>
   );
 };
 
-export default editRoutine;
+export default RoutineActivities;

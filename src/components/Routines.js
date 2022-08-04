@@ -25,7 +25,7 @@ const Routines = () => {
 
 
   useEffect(() => {
-    if(!showModal && selectedRoutine){
+    if(selectedRoutine){
       setShowModal(true)
     }
 

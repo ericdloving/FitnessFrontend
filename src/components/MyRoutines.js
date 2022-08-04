@@ -29,6 +29,10 @@ const MyRoutines = ({ username, setUsername }) => {
   
   }, [username]);
 
+  useEffect(() => {
+    if (selectedRoutine) setShowEditModal(true)
+
+  },[selectedRoutine])
 
 
 
@@ -77,8 +81,7 @@ const deleteRoutine = async () => {
                   <p>Name: {routine.name}</p>
                   <p>Goal: {routine.goal}</p>
                   <p>Creator: {routine.creatorName}</p>
-                  <button onClick={()=>deleteRoutine()}>Delete</button>
-                  <button onClick={()=>{setShowEditModal(true);console.log(myRoutines);setSelectedRoutine(routine)}}>Update</button>
+                 
                 </div>
                 
               );
