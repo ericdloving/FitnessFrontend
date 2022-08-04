@@ -5,7 +5,7 @@ import { createUserRoutine } from "../api";
 const createRoutine = ({setShowCreateModal}) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
-  const [isPublic, setIsPublic] = useState(null);
+  const [isPublic, setIsPublic] = useState(true);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

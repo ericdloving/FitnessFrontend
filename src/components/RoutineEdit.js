@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { attachActivity, editUserRoutine,getActivities } from "../api";
+import MyRoutines from "./MyRoutines";
 import "./routineActivities.css";
 
 
@@ -7,7 +8,7 @@ import "./routineActivities.css";
 const editRoutine = ({ setShowEditModal, selectedRoutine, username }) => {
   const [name, setName] = useState(selectedRoutine.length ? selectedRoutine.name : "");
   const [goal, setGoal] = useState(selectedRoutine.length ? selectedRoutine.goal : "");
-  const [isPublic, setIsPublic] = useState(null);
+  const [isPublic, setIsPublic] = useState(selectedRoutine.length ? selectedRoutine.isPublic :null);
   const [allActivities, setAllActivities] = useState([]);
   const [selectedActivityId, setSelectedActivityId] = useState(null);
   const [count, setCount] = useState(0)
@@ -38,9 +39,9 @@ const handleSelectChange = (event) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("calling the function")
-    const updatedStuff = await attachActivity(selectedRoutine.id,selectedActivityId,count,duration)
-    console.log("called the function",updatedStuff)
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token")
+    const updatedStuff = await attachActivity(selectedRoutine.id,selectedActivityId,count,duration,token)
+    console.log("called the function",MyRoutines)
     if (username === selectedRoutine.creatorName) {
       alert("Larry!@!");
       const updateRoutine = await editUserRoutine(

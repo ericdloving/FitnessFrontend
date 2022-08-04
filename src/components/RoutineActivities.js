@@ -4,7 +4,7 @@ import "./routineActivities.css";
 const RoutineActivities = ({ selectedRoutine, setShowModal }) => {
   return (
     <div className="modal">
-      {selectedRoutine ? selectedRoutine.activities.length (
+      {selectedRoutine && selectedRoutine.activities.length?  (
         <div className="routineDetails">
           <div className="routineDetailsTitle">{selectedRoutine.name}<p className="xButton" onClick={()=>setShowModal(false)}>❌</p></div>
           <div className="routineBody">
@@ -23,9 +23,10 @@ const RoutineActivities = ({ selectedRoutine, setShowModal }) => {
           })}
                 <button id="closeButton" onClick={() => setShowModal(false)}>Close</button>
         </div>
-      ) : <div>
-        Sorry there aren't any activities for ${selectedRoutine.name}!
+      ) : <div className="routineDetails">
+        {`Sorry there aren't any activities for ${selectedRoutine.name}!`}
         <div>
+        <center><img src="https://raw.githubusercontent.com/gist/brudnak/dbe7bcbae5a283d2f393b0bb88d0d834/raw/8efb958d79fd81630ee777d62d85bb085391ef4a/portal.gif"/></center>
           </div>
           </div>}
 

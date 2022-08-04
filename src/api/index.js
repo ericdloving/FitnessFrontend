@@ -169,12 +169,16 @@ export async function whoAmI(token) {
 }
 
 
-export async function attachActivity(routineId,activityId,count,duration) {
+export async function attachActivity(routineId,activityId,count,duration,token) {
   console.log(`called attachActivity(${routineId},${activityId},${count},${duration})`)
   console.log("Thank you for coming to attachActivity")
   try {
     const routineActivity = await fetch(`${BASE}/routines/${routineId}/activities`, {
       method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
       body: JSON.stringify({
         activityId: parseInt(activityId),
         count: parseInt(count),
