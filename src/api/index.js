@@ -133,7 +133,40 @@ export async function createUserActivity(name,description,token){
   }
 }
 
+export async function attachActivity(routineId,activityId,count,duration,token) {
+  try {
+    const routineActivity = await fetch(`${BASE}/routines/${routineId}/activities`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        activityId: parseInt(activityId),
+        count: parseInt(count),
+        duration: parseInt(duration)
+      })
+    })
+    const result = await routineActivity.json();
+    return result;
+  } catch (error) {throw error}
+}
 
+
+export async function deleteRoutineActivity(token,routineActivityId){
+  try {
+    const response = await fetch( `${BASE}/routine_activities/${routineActivityId}`,{
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      }})
+    const deletedActivity = await response.json();
+    return deletedActivity
+  } catch (error) {
+    throw error
+  }
+}
 
 
 //User functions
@@ -187,24 +220,4 @@ export async function whoAmI(token) {
 }
 
 
-export async function attachActivity(routineId,activityId,count,duration,token) {
-  console.log(`called attachActivity(${routineId},${activityId},${count},${duration})`)
-  console.log("Thank you for coming to attachActivity")
-  try {
-    const routineActivity = await fetch(`${BASE}/routines/${routineId}/activities`, {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({
-        activityId: parseInt(activityId),
-        count: parseInt(count),
-        duration: parseInt(duration)
-      })
-    })
-    const result = await routineActivity.json();
-    return result;
-  } catch (error) {throw error}
-}
 

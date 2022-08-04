@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { createUserRoutine } from "../api";
+import "./routineActivities.css";
+
 
 
 const createRoutine = ({setShowCreateModal}) => {
@@ -28,9 +30,9 @@ const createRoutine = ({setShowCreateModal}) => {
   };
 
   return (
-    <div className="createForm">
+    <div className="routineDetails">
         <p className="xButton" onClick={()=>setShowCreateModal(false)}>❌</p>
-      <h1 className="title">Add New Routine</h1>
+      <h1 className="routineActivityDetails title">Add New Routine</h1>
       <form id="loginForm">
         <div className="routine">
           <input
