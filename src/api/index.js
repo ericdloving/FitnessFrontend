@@ -168,3 +168,18 @@ export async function whoAmI(token) {
   }catch (error){throw error}
 }
 
+
+export async function attachActivity(routineId,activityId,count,duration) {
+  try {
+    const routineActivity = await fetch(`${BASE}/routines/${routineId}/activities`, {
+      method: "POST",
+      body: JSON.stringify({
+        activityId: {activityId},
+        count: {count},
+        duration: {duration}
+      })
+    })
+    const result = await routineActivity.json();
+    return result;
+  } catch (error) {throw error}
+}

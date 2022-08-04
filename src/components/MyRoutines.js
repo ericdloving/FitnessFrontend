@@ -34,6 +34,7 @@ const MyRoutines = ({ username, setUsername }) => {
 
 function handleClickSummary(){
   setShowCreateModal(true);
+  
 }
 
 const deleteRoutine = async () => {
@@ -77,7 +78,7 @@ const deleteRoutine = async () => {
                   <p>Goal: {routine.goal}</p>
                   <p>Creator: {routine.creatorName}</p>
                   <button onClick={()=>deleteRoutine()}>Delete</button>
-                  <button onClick={()=>{setShowEditModal(true);setSelectedRoutine(routine)}}>Update</button>
+                  <button onClick={()=>{setShowEditModal(true);console.log(myRoutines);setSelectedRoutine(routine)}}>Update</button>
                 </div>
                 
               );
