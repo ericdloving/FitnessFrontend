@@ -4,10 +4,13 @@ import "./routineActivities.css";
 
 
 const editRoutine = ({ setShowEditModal, selectedRoutine, username }) => {
-  const [name, setName] = useState("");
-  const [goal, setGoal] = useState("");
+  const [name, setName] = useState(selectedRoutine.length ? selectedRoutine.name : "");
+  const [goal, setGoal] = useState(selectedRoutine.length ? selectedRoutine.goal : "");
   const [isPublic, setIsPublic] = useState(null);
-  console.log(username, "whats going on here");
+useEffect(() =>{
+    setName(selectedRoutine.name)
+    setGoal(selectedRoutine.goal)
+},[selectedRoutine])
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
@@ -48,14 +51,14 @@ const editRoutine = ({ setShowEditModal, selectedRoutine, username }) => {
             className="input"
             type="text"
             name="name"
-            defaultValue={selectedRoutine ? selectedRoutine.name : name}
+            defaultValue={ name}
             onChange={nameChange}
           />
           <input
             className="input"
             type="text"
             name="goal"
-            defaultValue={selectedRoutine ? selectedRoutine.goal : goal}
+            defaultValue={goal}
             onChange={goalChange}
           />
           <label>

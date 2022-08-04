@@ -4,7 +4,7 @@ import "./routineActivities.css";
 const RoutineActivities = ({ selectedRoutine, setShowModal }) => {
   return (
     <div className="modal">
-      {selectedRoutine ? (
+      {selectedRoutine ? selectedRoutine.activities.length (
         <div className="routineDetails">
           <div className="routineDetailsTitle">{selectedRoutine.name}<p className="xButton" onClick={()=>setShowModal(false)}>❌</p></div>
           <div className="routineBody">
@@ -23,7 +23,11 @@ const RoutineActivities = ({ selectedRoutine, setShowModal }) => {
           })}
                 <button id="closeButton" onClick={() => setShowModal(false)}>Close</button>
         </div>
-      ) : null}
+      ) : <div>
+        Sorry there aren't any activities for ${selectedRoutine.name}!
+        <div>
+          </div>
+          </div>}
 
     </div>
   );
