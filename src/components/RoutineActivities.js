@@ -1,7 +1,7 @@
 import React from "react";
 import "./routineActivities.css";
 
-const RoutineActivities = ({ selectedRoutine, setShowModal }) => {
+const RoutineActivities = ({ selectedRoutine,setSelectedRoutine, setShowModal }) => {
   return (
     <div className="modal">
       {selectedRoutine && selectedRoutine.activities.length?  (

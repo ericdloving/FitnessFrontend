@@ -79,9 +79,8 @@ export async function editRoutineActivity(token, routineActivityId, count, durat
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        name: name,
-        goal: goal,
-        isPublic: isPublic ? true : null
+        count: parseInt(count),
+        duration: parseInt(duration)
       })
     })
     const updatedRoutineActivity = await response.json();
