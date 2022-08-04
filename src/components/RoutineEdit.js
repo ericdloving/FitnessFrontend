@@ -16,26 +16,35 @@ const RoutineActivities = ({setSelectedRoutine, selectedRoutine, setShowEditModa
     event.preventDefault();
     const token = localStorage.getItem("token");
     const updateTitle = await editUserRoutine(title, selectedRoutine.goal, selectedRoutine.isPublic, token, selectedRoutine.id)
+    const newRoutine = { activities: [...selectedRoutine.activities], ...updateTitle}
+    setSelectedRoutine(newRoutine)
     setEditTitle(false)
   }
   const handleGoalChange = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
     const updateGoal = await editUserRoutine( selectedRoutine.name,goal, selectedRoutine.isPublic, token, selectedRoutine.id)
+    console.log(updateGoal, " react is amazing")
+    const newRoutine = { activities: [...selectedRoutine.activities], ...updateGoal}
     setEditGoal(false)
+    setSelectedRoutine(newRoutine)
   }
   const handleCountChange = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
     const updateCount = await editRoutineActivity(token,selectedRa.routineActivityId, count, selectedRa.duration)
+    console.log(updateCount, "this is the count info")
+    const newActivity = {  ...updateCount}
     setEditCount(false)
+    setSelectedRoutine({first: Math.random(),activities: [...selectedRoutine.activities], ...selectedRoutine})
   }
 
   useEffect(()=>{
     console.log(selectedRa, "i am the ra ya heard")
   },[selectedRa])
+
   useEffect(()=>{
-    
+    console.log(selectedRa, "i am the ra ya heard")
   },[selectedRoutine])
 
   
@@ -49,7 +58,7 @@ return (
         <div className="routineDetails" >
 {/*TITLE        **********/}
           <div className={!editTitle ? "routineDetailsTitle" : "hidden"}>
-            {selectedRoutine.name} <TbEdit onClick={()=>setEditTitle(true)} /><p className="xButton" onClick={()=>{setShowEditModal(false); setSelectedRoutine(false)}}>❌</p>
+            {selectedRoutine.name} <TbEdit onClick={()=>setEditTitle(true)} /><p className="xButton" onClick={()=>{setShowEditModal(false)}}>❌</p>
             </div>
 
             <div className={editTitle ? "routineDetailsTitle edit" : "hidden"}>
@@ -68,7 +77,7 @@ return (
             <form onSubmit={handleGoalChange}>
             <input type="text" defaultValue={selectedRoutine.goal}
              onChange={(e)=>setGoal(e.target.value)}/>
-            <button type="submit">☑️</button>{editGoal ? <p onClick={()=>setEditGoal(false)}>❌</p>: null}
+            <button type="submit" onClick={()=>{setEditGoal(false)}}>☑️</button>{editGoal ? <p onClick={()=>setEditGoal(false)}>❌</p>: null}
             </form>
             </div>
             <p>Creator: {selectedRoutine.creatorName}</p>
@@ -102,7 +111,7 @@ return (
               </div>
             ) : null;
           })}
-                <button id="closeButton" onClick={() => {setShowEditModal(false);setSelectedRoutine(false)}}>Close</button>
+                <button id="closeButton" onClick={() => {setShowEditModal(false)}}>Close</button>
         </div>
       ) : null}
 

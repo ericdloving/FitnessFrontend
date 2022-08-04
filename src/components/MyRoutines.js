@@ -11,6 +11,7 @@ const MyRoutines = ({ username }) => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
+  const [routineWasEdited, setRoutineWasEdited] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   async function fetchMyRoutines(username) {
@@ -27,14 +28,18 @@ const MyRoutines = ({ username }) => {
     
     fetchGetMe();
   
-  }, [username]);
+  }, [routineWasEdited]);
 
   useEffect(() => {
     if (selectedRoutine) setShowEditModal(true)
+    console.log(selectedRoutine, "this is from my routines!!")
+    setSelectedRoutine(selectedRoutine)
 
   },[selectedRoutine])
 
-
+useEffect(()=> {
+ setRoutineWasEdited(!routineWasEdited)
+},[showEditModal])
 
 function handleClickSummary(){
   setShowCreateModal(true);
@@ -50,7 +55,9 @@ const deleteRoutine = async () => {
   navigate("/Routines");
   return erasePost;}}
   
-
+  useEffect(()=>{
+    
+  },[showEditModal])
 
 
   return (
