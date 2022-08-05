@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,500&display=swap");
 
 header {
+  border-radius: 0;
   display: flex;
   justify-content:flex-start;
   flex-direction: row;

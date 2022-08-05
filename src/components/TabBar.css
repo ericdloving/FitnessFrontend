@@ -18,6 +18,7 @@
 
 .tab {
     font-family: 'Fira Sans Condensed', sans-serif;
+    border-radius: 0px;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     height: 2em;
