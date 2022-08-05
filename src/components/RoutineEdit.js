@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import "./routineActivities.css";
 import { TbEdit } from "react-icons/tb"
-import { attachActivity, editRoutineActivity, editUserRoutine,getActivities, deleteUserRoutine,deleteRoutineActivity } from "../api";
+import { attachActivity, editRoutineActivity, editUserRoutine,getActivities, deleteUserRoutine,deleteRoutineActivity, getRoutinesByUser } from "../api";
 
 const RoutineActivities = ({setSelectedRoutine, selectedRoutine, setShowEditModal,username }) => {
   const [selectedRa,setSelectedRa] = useState(null);
@@ -42,6 +42,7 @@ console.log(selectedRa, "this is magic")
     const token = localStorage.getItem("token")
     const updatedStuff = await attachActivity(selectedRoutine.id,selectedActivityId,count,duration,token)
     console.log(updatedStuff, "were is the beef")
+    updateSelectedRoutine();
   }
 
 
@@ -66,14 +67,14 @@ console.log(selectedRa, "this is magic")
     const token = localStorage.getItem("token");
     const updateCount = await editRoutineActivity(token,selectedRa.routineActivityId, count, selectedRa.duration)
     setEditCount(false)
-    setSelectedRa({updateCount})
+    updateSelectedRoutine();
   }
   const handleDurationChange = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
     const updateDuration = await editRoutineActivity(token,selectedRa.routineActivityId, selectedRa.count, duration)
     setEditCount(false)
-    setSelectedRa({updateDuration})
+    updateSelectedRoutine();
   }
 
   const handleSelectChange = (event) => {
@@ -127,7 +128,13 @@ function addActivity (){
             return eraseActivity;
           }
         };
-
+async function updateSelectedRoutine() {
+  try {
+    const token = localStorage.getItem("token")
+    const myRoutines = await getRoutinesByUser(selectedRoutine.creatorName, token)
+    setSelectedRoutine(myRoutines.find((routine)=> routine.id === selectedRoutine.id))
+  }catch(error) {throw error}
+}
 
 //Return
 
