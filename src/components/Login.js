@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import "./app.css"
-// import "./login.css"
-// import "./TabBar.css"
+import "./app.css"
+import "./login.css"
 import {login} from "../api"
 
-const Login = ({setLoggedIn,loggedIn, username, setUsername}) => {
+const Login = ({setLoggedIn, username, setUsername}) => {
     
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -19,7 +18,7 @@ const Login = ({setLoggedIn,loggedIn, username, setUsername}) => {
         if(token){
         localStorage.setItem("token", token);
         setLoggedIn(true)
-        navigate("/Tab1")
+        navigate("/")
         }
         } catch (error) {
             throw error
@@ -34,10 +33,12 @@ const Login = ({setLoggedIn,loggedIn, username, setUsername}) => {
     const passwordChange = (event) => {
             setPassword(event.target.value);
           };
+
+          
     return (
-        <div className= "tab1Bdy">
-        <h1 className="tab1Hd">Welcome Please Login</h1>
-        <form id="loginform" onSubmit={handleSubmit}>
+        <div className= "loginPage">
+        <h1>Welcome Please Login</h1>
+        <form id="loginForm" onSubmit={handleSubmit}>
         <div className="boxes">
             <input className="input"
             type="text"

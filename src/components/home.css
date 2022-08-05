@@ -1,47 +1,10 @@
-.homepageMain{
-    background-image: url(https://c4.wallpaperflare.com/wallpaper/625/409/193/fitness-late-backgrounds-desktop-wallpaper-preview.jpg);
-    height: 100%;
-    width: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    position:absolute;
-    top: 20.5%;
-    
-}
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 
-h1{
-    font-size: 50px;
-
-}
-
-.homeTitle{
-    position: absolute;
-    right: 65%;
-    top: 5%;
-    padding: 10px;
-    -webkit-text-fill-color: black;
-  -webkit-text-stroke-width: .5px;
-  -webkit-text-stroke-color: lightgrey;
-}
-.homePitch{
-    position: absolute;
-    left: 70%;
-    top: 5%;
-    font-size: 20px;
-    padding: 10px;
-    -webkit-text-fill-color: black;
-  -webkit-text-stroke-width: .5px;
-  -webkit-text-stroke-color: white;
-}
-.homeSignUp{
-    position: absolute;
-    left: 44%;
-    top: 78%;
-    -webkit-text-fill-color: black;
-  -webkit-text-stroke-width: .5px;
-  -webkit-text-stroke-color: lightgrey;
-}@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,400;1,600&display=swap');
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 
 #app{
     min-width: 30%;
@@ -52,7 +15,7 @@ h1{
     background-image: url(/public/Images/wallpaperflare.com_wallpaper.jpg);
     height: 100vh;
     width: 100vw;
-    font-family: 'Fira Sans Condensed', sans-serif;
+    font-family: 'Oswald', sans-serif;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -68,8 +31,8 @@ h1{
 }
 
 .homeTitle{
-    position: fixed;
-    right: 12em;
+    position: absolute;
+    right: 83%;
     top: 20%;
     padding: 10px;
     -webkit-text-fill-color: black;
@@ -77,16 +40,19 @@ h1{
   -webkit-text-stroke-color: rgb(71, 241, 102);
 }
 .homePitch{
-    position: fixed;
-    left: 29em;
+    position: absolute;
+    left: 28%;
     top: 20%;
     font-size: 22px;
     padding: 10px;
-    -webkit-text-fill-color: grey;
-  -webkit-text-stroke-width: .5px;
-  -webkit-text-stroke-color: rgb(62, 195, 247);
+    -webkit-text-fill-color: rgb(71, 241, 102);
+  -webkit-text-stroke-width: .2px;
+  -webkit-text-stroke-color: black;
 }
 .homeSignUp{
+    animation: blinker 1s linear infinite;
+    background: none;
+    border: solid 3px rgb(71, 241, 102);;
     position: absolute;
     left: 44%;
     top: 78%;

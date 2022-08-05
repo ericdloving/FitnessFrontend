@@ -1,10 +1,12 @@
 import React, { useEffect,useState } from "react";
-import { getRoutines,getActivities } from "../api";
+import { useNavigate } from "react-router-dom";
+import { getRoutines,getActivities } from "../api"
 import "./app.css"
 import "./home.css"
 
 const Home = ({loggedIn}) => {
 const token = localStorage.getItem("token") 
+const navigate = useNavigate();
 const [lengthA,setLengthA] = useState(0)
 const [lengthB,setLengthB] = useState(0)
 useEffect(()=>{
@@ -27,7 +29,7 @@ useEffect(()=>{
             <div className="homePitch"> <b>{`With over ${Math.round(lengthA/ 100) * 100} routines and ${lengthB} activities ` }<br/>
              {`you can achieve any fitness goal `}</b></div>
             <div >
-                <button className="homeSignUp">Sign Up Here!</button>
+                <button className="homeSignUp" onClick={()=>{navigate("/Register")}}>Start Today!</button>
                 </div>
             <div> </div>
             <section>
