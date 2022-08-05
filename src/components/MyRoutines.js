@@ -16,13 +16,13 @@ const MyRoutines = ({ username }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedRoutine, setSelectedRoutine] = useState(null);
   const [routineWasEdited, setRoutineWasEdited] = useState(false);
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  async function fetchMyRoutines(username) {
+
+  useEffect(() => {
+      async function fetchMyRoutines(username) {
     const returnRoutines = await getRoutinesByUser(username, token);
     setMyRoutines(returnRoutines);
   }
-  useEffect(() => {
     async function fetchGetMe() {
       const me = await whoAmI(localStorage.getItem("token"));
       const name = me.username;
@@ -44,23 +44,12 @@ const MyRoutines = ({ username }) => {
     setShowCreateModal(true);
   }
 
-  const deleteRoutine = async () => {
-    const token = localStorage.getItem("token");
-    const routineId = selectedRoutine.id;
-    if (username === selectedRoutine.creatorName) {
-      const eraseRoutine = await deleteUserRoutine(token, routineId);
-      alert("Post has been Deleted!");
-      navigate("/Routines");
-      return erasePost;
-    }
-  };
-
   useEffect(() => {}, [showEditModal]);
 
   return (
     <div className="tab1Bdy">
       <Modal show={showCreateModal} className="modal">
-        <CreateRoutine setShowCreateModal={setShowCreateModal} />
+        <CreateRoutine setShowCreateModal={setShowCreateModal} setRoutineWasEdited={setRoutineWasEdited} />
       </Modal>
       <Modal show={showEditModal} className="modal">
         <RoutineEdit

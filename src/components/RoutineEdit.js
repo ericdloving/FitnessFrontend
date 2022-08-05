@@ -30,7 +30,7 @@ useEffect(() => {
     getAllActivities()
   },[])
   useEffect(()=>{
-
+console.log(selectedRa, "this is magic")
   },[selectedRa])
 
   useEffect(()=>{
@@ -167,9 +167,9 @@ return (
           </div>
           {selectedRoutine.activities.map((activity) => {
             return selectedRoutine.activities.length ? (
-              <div className="routineActivity" key={activity.id} onClick={(()=>{setSelectedRa(activity)})}>
+              <div className="routineActivity" key={activity.id} onMouseOver={(()=>{setSelectedRa(activity)})}>
                <div>
-                 <p className = "routineActivityDetails title" onClick = {()=>{setShowEditModal(false)}}>{activity.name}</p>
+                 <p className = "routineActivityDetails title" onClick = {()=>{setShowEditModal(false)}}>Activity: {activity.name}</p>
                  <p align="right" className="xButton" onMouseOver={()=>{setRemoveActivityId(activity.routineActivityId)}}  onClick={()=>{deleteActivity()}}>🗑</p>
                  
                  </div>
@@ -178,7 +178,7 @@ return (
 
 
                 <div className={!editCount ? "raCount" : "hidden"}>
-            {activity.count} <TbEdit onClick={()=>setEditCount(true)} />
+            Count: {activity.count} <TbEdit onClick={()=>setEditCount(true)} />
            </div>
 
             <div className={editCount ? "raCount" : "hidden"}>
@@ -193,7 +193,7 @@ return (
 
 
             <div className={!editDuration ? "raDuration" : "hidden"}>
-            {activity.duration} <TbEdit onClick={()=>setEditDuration(true)} />
+            Duration: {activity.duration} <TbEdit onClick={()=>setEditDuration(true)} />
            </div>
 
             <div className={editDuration ? "raDuration" : "hidden"}>

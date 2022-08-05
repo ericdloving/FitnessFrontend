@@ -4,7 +4,7 @@ import "./routineActivities.css";
 
 
 
-const createRoutine = ({setShowCreateModal}) => {
+const createRoutine = ({setShowCreateModal,setRoutineWasEdited}) => {
   const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
   const [isPublic, setIsPublic] = useState(true);
@@ -14,6 +14,8 @@ const createRoutine = ({setShowCreateModal}) => {
     const token = localStorage.getItem("token")
     alert("Routine has been Added!");
     const newRoutine = await createUserRoutine(name, goal, isPublic,token);
+    setRoutineWasEdited(true)
+    setShowCreateModal(false)
     return newRoutine;
   };
 
