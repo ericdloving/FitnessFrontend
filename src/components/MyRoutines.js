@@ -39,7 +39,7 @@ const MyRoutines = ({ username }) => {
 
   useEffect(() => {
     setRoutineWasEdited(!routineWasEdited);
-  }, [showEditModal]);
+  }, [showEditModal, showCreateModal]);
 
   function handleClickSummary() {
     setShowCreateModal(true);

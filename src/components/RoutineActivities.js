@@ -12,6 +12,7 @@ const RoutineActivities = ({ selectedRoutine,setSelectedRoutine, setShowModal })
             <p>Goal: {selectedRoutine.goal}</p>
             <p>Creator: {selectedRoutine.creatorName}</p>
           </div>
+<div className="activities">
           {selectedRoutine.activities.map((activity) => {
             return selectedRoutine.activities.length ? (
               <div className="routineActivity" key={activity.id}>
@@ -21,8 +22,10 @@ const RoutineActivities = ({ selectedRoutine,setSelectedRoutine, setShowModal })
                 <p className = "routineActivitiyDetails">Duration: {activity.duration}</p>
               </div>
             ) : null;
-          })}
+          })}</div>
+          <footer classId="footerButtons">
                 <button id="closeButton" onClick={() => setShowModal(false)}>Close</button>
+                </footer>
         </div>
       ) : <div className="routineDetails">
         {`Sorry there aren't any activities for ${selectedRoutine.name}!`}
