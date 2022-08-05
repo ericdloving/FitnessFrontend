@@ -18,9 +18,6 @@ const RoutineActivities = ({setSelectedRoutine, selectedRoutine, setShowEditModa
   const [count, setCount] = useState(selectedRa ? selectedRa.count : 0)
   const [duration, setDuration] = useState("")
 
-  ////////////Need a better method to capture individual routineIDs because having to click on
-  ///////////an activity multiple times to catch the id is hit or miss at best
-
   //UseEffects
 useEffect(() => {
     const getAllActivities = async () => {
@@ -37,7 +34,7 @@ useEffect(() => {
   },[selectedRa])
 
   useEffect(()=>{
-  },[selectedRoutine])
+  },[removeActivityId])
 
 //Handlers
   const handleSubmit = async (e) => {
@@ -123,7 +120,7 @@ function addActivity (){
         };
          const deleteActivity = async () => {
           const token = localStorage.getItem("token");
-          const activityId = removeActivityId;
+          const activityId = removeActivityId
           if (activityId) {
             const eraseActivity = await deleteRoutineActivity(token, activityId);
             alert("Activity has been Deleted!");
@@ -173,7 +170,7 @@ return (
               <div className="routineActivity" key={activity.id} onClick={(()=>{setSelectedRa(activity)})}>
                <div>
                  <p className = "routineActivityDetails title" onClick = {()=>{setShowEditModal(false)}}>{activity.name}</p>
-                 <p align="right" className="xButton" onClick={()=>{removeActivityId ? setShowEditModal(false): null;selectedRa ? setRemoveActivityId(selectedRa.routineActivityId):null;removeActivityId ? deleteActivity(): null}}>🗑</p>
+                 <p align="right" className="xButton" onMouseOver={()=>{setRemoveActivityId(activity.routineActivityId)}}  onClick={()=>{deleteActivity()}}>🗑</p>
                  
                  </div>
                 <p className = "routineActivitiyDetails description">{activity.description}</p>
