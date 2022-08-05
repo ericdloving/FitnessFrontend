@@ -116,6 +116,7 @@ function addActivity (){
           if (username === selectedRoutine.creatorName) {
             const eraseRoutine = await deleteUserRoutine(token, routineId);
             alert("Routine has been Deleted!");
+            updateSelectedRoutine()
             return eraseRoutine;
           }
         };
@@ -125,6 +126,7 @@ function addActivity (){
           if (activityId) {
             const eraseActivity = await deleteRoutineActivity(token, activityId);
             alert("Activity has been Deleted!");
+            updateSelectedRoutine()
             return eraseActivity;
           }
         };
