@@ -26,7 +26,7 @@ const createActivity = ({setShowModal}) => {
 
   return (
     <div className="routineDetails createActivity">
-    <div className="routineDetailsTitle">Add New Activity<p className="xButton" onClick={()=>{setShowModal(false);setSelectedRoutine(false)}}>❌</p></div>
+    <div className="routineDetailsTitle">Add New Activity<p className="xButton" onClick={()=>{setShowModal(false);}}>❌</p></div>
       <form >
         <div className="createForm">
           <textarea className="createField"

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./app.css"
-import "./login.css"
-import "./TabBar.css"
+// import "./app.css"
+// import "./login.css"
+// import "./TabBar.css"
 import {login} from "../api"
 
 const Login = ({setLoggedIn,loggedIn, username, setUsername}) => {

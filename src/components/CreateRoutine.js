@@ -32,32 +32,30 @@ const createRoutine = ({setShowCreateModal,setRoutineWasEdited}) => {
   };
 
   return (
-    <div className="routineDetails">
-        <p className="xButton" onClick={()=>setShowCreateModal(false)}>❌</p>
-      <h1 className="routineActivityDetails title">Add New Routine</h1>
-      <form id="loginForm">
-        <div className="routine">
-          <input
-            className="input"
+    <div className="routineDetails createActivity">
+      <div className ="routineDetailsTitle">Add New Routine</div>
+      <form >
+        <div className="createForm">
+          <textarea className="createField"
             type="text"
             name="name"
             placeholder="Name"
             required={true}
             onChange={nameChange}
           />
-          <input
-            className="input"
+          <textarea className="createField"
             type="text"
             name="goal"
             placeholder="Goal"
             required={true}
             onChange={goalChange}
           />
-          <label>
+            <label>
             <input type="checkbox" onChange={isPublicChange} />
             Public
             </label>
-            <button type="submit" onClick={handleSubmit}>CREATE</button>
+            <button type="submit" id="addActivityButton" onClick={handleSubmit}>CREATE</button>
+            <button id="closeButton" onClick={() => {setShowCreateModal(false)}}>Close</button>
         </div>
       </form>
     </div>
