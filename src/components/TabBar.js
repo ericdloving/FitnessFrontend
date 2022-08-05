@@ -29,7 +29,7 @@ const TabBar = ({loggedIn,setLoggedIn})=>{
         <button 
         className={selectedTab==="1" ? "tab active": "tab"} 
         id="tab1" 
-        onClick={(event)=>{setSelectedTab(event.target.value); navigate("/home")}} 
+        onClick={(event)=>{setSelectedTab(event.target.value); navigate("/")}} 
         value="1">Home
         </button>
         <button 

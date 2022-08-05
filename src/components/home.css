@@ -1,0 +1,44 @@
+.homepageMain{
+    background-image: url(https://wallpapers.com/images/high/grayscale-fitness-gym-view-vyo2r5y0gnkfnjhf.jpg);
+    height: 100vh;
+    width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    max-height: 100%;
+    position:fixed;
+    top: 20vh;
+    
+}
+
+h1{
+    font-size: 50px;
+
+}
+
+.homeTitle{
+    position: relative;
+    right: 4vw;
+    padding: 10px;
+    -webkit-text-fill-color: black;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: lightgrey;
+}
+.homePitch{
+    position: absolute;
+    left: 50vw;
+    top: 15vh;
+
+    padding: 10px;
+    -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: black;
+}
+.homeSignUp{
+    position: relative;
+    top: 10vh;
+    padding: 10px;
+    -webkit-text-fill-color: black;
+  -webkit-text-stroke-width: .5px;
+  -webkit-text-stroke-color: lightgrey;
+}

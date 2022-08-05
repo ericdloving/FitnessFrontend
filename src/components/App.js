@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { Route, Routes } from "react-router-dom";
 import {
   Header,
-  Tab1,
+  Home,
   Routines,
   Login,
   Register,
@@ -15,6 +15,7 @@ import { whoAmI } from "../api";
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [length,setLength] = useState(0)
 
   const getMe = async () => {
     try {
@@ -36,8 +37,8 @@ const App = () => {
     <div id="App">
       <Header setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
       <Routes>
-        <Route path="/Tab1" element={<Tab1 loggedIn={loggedIn} />} />
-        <Route path="/Routines" element={<Routines loggedIn={loggedIn} />} />
+        
+        <Route path="/Routines" element={<Routines loggedIn={loggedIn} setLength={setLength} />} />
         <Route
           path="/MyRoutines"
           element={<MyRoutines username={username} setUsername={setUsername} />}
@@ -58,6 +59,7 @@ const App = () => {
           }
         />
         <Route path="/Register" element={<Register />} />
+        <Route path="/" element={<Home loggedIn={loggedIn} length={length} />} />
       </Routes>
     </div>
   );

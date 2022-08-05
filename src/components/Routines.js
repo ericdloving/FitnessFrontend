@@ -3,9 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import { getRoutines } from "../api";
 import "./TabBar.css";
 import "./routines.css";
-import {RoutineActivities} from "./";
+import {RoutineActivities,Home} from "./";
 
-const Routines = () => {
+const Routines = ({setLength}) => {
   const [allRoutines, setAllRoutines] = useState([]);
   const [paginatedRoutines, setPaginatedRoutines] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
@@ -18,6 +18,7 @@ const Routines = () => {
   async function fetchRoutines() {
     const returnRoutines = await getRoutines();
     setAllRoutines(returnRoutines);
+    setLength(returnRoutines.length);
   }
   useEffect(() => {
     fetchRoutines();
@@ -65,6 +66,7 @@ const Routines = () => {
 
 
   return (
+  
     <div className="routines">
       <p className="routine">Welcome there are {allRoutines.length || "no"} routines! Click on one to view it's activities.</p>
        <Modal show={showModal} className="modal"><div>
