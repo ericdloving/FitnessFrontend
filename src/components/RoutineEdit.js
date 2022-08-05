@@ -93,7 +93,7 @@ function addActivity (){
               )
             })}
           </select>
-          <input 
+          <input
             className="input"
             type="number"
             name="count"
@@ -145,16 +145,16 @@ return (
       {selectedRoutine  ?  (
         <div className="routineDetails" >
 {/*TITLE        **********/}
+          
           <div className={!editTitle ? "routineDetailsTitle" : "hidden"}>
-            {selectedRoutine.name} <TbEdit onClick={()=>setEditTitle(true)} />
-            <p className="xButton" onClick={()=>{setShowEditModal(false)}}>❌</p>
-            <p className="xButton" onClick={()=>{setNewActivity(true)}}>➕</p>
-            <p className="xButton" onClick={()=>{setShowEditModal(false);deleteRoutine()}}>🗑</p>
+            <p className="title">{selectedRoutine.name}</p> <TbEdit className="editButton" onClick={()=>setEditTitle(true)} />
+           
+            <p className="deleteRoutineButton" onClick={()=>{setShowEditModal(false);deleteRoutine()}}>🗑</p>
             </div>
 
             <div className={editTitle ? "routineDetailsTitle edit" : "hidden"}>
             <form onSubmit={handleTitleChange}>
-            <input type="text" defaultValue={selectedRoutine.name}
+            <textarea type="text" defaultValue={selectedRoutine.name}
              onChange={(e)=>setTitle(e.target.value)}/>
             <button type="submit">☑️</button><button onClick={()=>setEditTitle(false)}>❌</button>
             </form>
@@ -166,20 +166,21 @@ return (
 
             <div className={editGoal ? "routineGoal" : "hidden"}>
             <form onSubmit={handleGoalChange}>
-            <input type="text" defaultValue={selectedRoutine.goal}
+            <textarea type="text" defaultValue={selectedRoutine.goal}
              onChange={(e)=>setGoal(e.target.value)}/>
             <button type="submit" onClick={()=>{setEditGoal(false)}}>☑️</button>{editGoal ? <p onClick={()=>setEditGoal(false)}>❌</p>: null}
             </form>
             </div>
-            <p>Creator: {selectedRoutine.creatorName}</p>
+
            
           </div>
+          <div className = "activities">
           {selectedRoutine.activities.map((activity) => {
             return selectedRoutine.activities.length ? (
               <div className="routineActivity" key={activity.id} onMouseOver={(()=>{setSelectedRa(activity)})}>
                <div>
                  <p className = "routineActivityDetails title" onClick = {()=>{setShowEditModal(false)}}>Activity: {activity.name}</p>
-                 <p align="right" className="xButton" onMouseOver={()=>{setRemoveActivityId(activity.routineActivityId)}}  onClick={()=>{deleteActivity()}}>🗑</p>
+                 <p className="delActivityButton" onMouseOver={()=>{setRemoveActivityId(activity.routineActivityId)}}  onClick={()=>{deleteActivity()}}>🗑</p>
                  
                  </div>
                 <p className = "routineActivitiyDetails description">{activity.description}</p>
@@ -215,9 +216,14 @@ return (
               </div>
             ) : null;
           })}
+          </div> 
           <div>{ newActivity ? addActivity() : null}</div>
-          
+          <footer>
+                <button id="addActivityButton" onClick={()=>setNewActivity(true)}>
+                  Add Activity
+                </button>
                 <button id="closeButton" onClick={() => {setShowEditModal(false)}}>Close</button>
+          </footer>
         </div>
       ) : null}
 
