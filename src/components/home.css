@@ -19,21 +19,21 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position:absolute;
+    position:relative;
     z-index: -10;
 
     
 }
 
 h1{
-    font-size: 50px;
+    font-size: 40px;
 
 }
 
 .homeTitle{
     position: absolute;
-    right: 83%;
-    top: 20%;
+    top: 25%;
+    right: 75%;
     padding: 10px;
     -webkit-text-fill-color: black;
   -webkit-text-stroke-width: .2px;
@@ -41,7 +41,7 @@ h1{
 }
 .homePitch{
     position: absolute;
-    left: 28%;
+    left: 76%;
     top: 20%;
     font-size: 22px;
     padding: 10px;
