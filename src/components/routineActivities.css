@@ -208,3 +208,16 @@ footer {
     bottom:0;
     
 }
+
+.createActivity {
+    left: 25%;
+    top: 25%;
+}
+.createField {
+    border: 1px solid gray;
+    resize: none;
+    margin: 10px;
+    width: 90%;
+    height: 60%;
+    font-size: 18px;
+}

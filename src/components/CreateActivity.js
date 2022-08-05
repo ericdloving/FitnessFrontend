@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createUserActivity } from "../api";
+import "./routineActivities.css";
 
 
 const createActivity = ({setShowModal}) => {
@@ -24,28 +25,25 @@ const createActivity = ({setShowModal}) => {
   };
 
   return (
-    <div className="createForm">
-        <p className="xButton" onClick={()=>setShowModal(false)}>❌</p>
-      <h1 className="title">Add New Activity</h1>
-      <form id="loginForm">
-        <div className="routine">
-          <input
-            className="input"
+    <div className="routineDetails createActivity">
+    <div className="routineDetailsTitle">Add New Activity<p className="xButton" onClick={()=>{setShowModal(false);setSelectedRoutine(false)}}>❌</p></div>
+      <form >
+        <div className="createForm">
+          <textarea className="createField"
             type="text"
             name="name"
             placeholder="Name"
             required={true}
             onChange={nameChange}
           />
-          <input
-            className="input"
+          <textarea className="createField"
             type="text"
             name="description"
             placeholder="Description"
             required={true}
             onChange={descriptionChange}
           />
-            <button type="submit" onClick={handleSubmit}>CREATE</button>
+            <button type="submit" id="addActivityButton" onClick={handleSubmit}>CREATE</button>
         </div>
       </form>
     </div>
