@@ -15,7 +15,6 @@ import { whoAmI } from "../api";
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
-  const [length,setLength] = useState(0)
 
   const getMe = async () => {
     try {
@@ -38,7 +37,7 @@ const App = () => {
       <Header setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
       <Routes>
         
-        <Route path="/Routines" element={<Routines loggedIn={loggedIn} setLength={setLength} />} />
+        <Route path="/Routines" element={<Routines loggedIn={loggedIn}/>} />
         <Route
           path="/MyRoutines"
           element={<MyRoutines username={username} setUsername={setUsername} />}
@@ -59,7 +58,7 @@ const App = () => {
           }
         />
         <Route path="/Register" element={<Register />} />
-        <Route path="/" element={<Home loggedIn={loggedIn} length={length} />} />
+        <Route path="/" element={<Home loggedIn={loggedIn} username={username} />} />
       </Routes>
     </div>
   );
