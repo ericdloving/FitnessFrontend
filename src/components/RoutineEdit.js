@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import "./app.css"
 import "./routineActivities.css";
 import { TbEdit } from "react-icons/tb"
 import { attachActivity, editRoutineActivity, editUserRoutine,getActivities, deleteUserRoutine,deleteRoutineActivity, getRoutinesByUser } from "../api";

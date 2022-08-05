@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { getRoutines,getActivities } from "../api";
+import "./app.css"
 import "./home.css"
 
 const Home = ({loggedIn}) => {
@@ -25,7 +26,9 @@ useEffect(()=>{
             <center><h1 className="homeTitle">Build the Best <br/><i>You</i></h1>
             <div className="homePitch"> <b>{`With over ${Math.round(lengthA/ 100) * 100} routines and ${lengthB} activities ` }<br/>
              {`you can achieve any fitness goal `}</b></div>
-            <div className="homeSignUp">Sign Up Here!</div>
+            <div >
+                <button className="homeSignUp">Sign Up Here!</button>
+                </div>
             <div> </div>
             <section>
             </section>

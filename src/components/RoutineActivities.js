@@ -1,4 +1,5 @@
 import React from "react";
+import "./app.css"
 import "./routineActivities.css";
 
 const RoutineActivities = ({ selectedRoutine,setSelectedRoutine, setShowModal }) => {
