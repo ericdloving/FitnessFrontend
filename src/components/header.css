@@ -5,26 +5,26 @@ body {
 header {
   border-radius: 0;
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   flex-direction: row;
   font-family: "Kanit", sans-serif;
   background: #062f4f;
-  border:none;
-  white-space:nowrap;
-  position:fixed;
-  width:100vw;
-  z-index:2;
+  border: none;
+  white-space: nowrap;
+  position: fixed;
+  width: 100vw;
+  z-index: 2;
 }
 
 #logowrapper {
-  display:block;
-  white-space:nowrap;
+  display: block;
+  white-space: nowrap;
   position: relative;
   margin-left: 1em;
 }
 .logotext {
-  display:inline;
-  position:relative;
+  display: inline;
+  position: relative;
   font-style: italic;
   font-size: 3em;
   color: red;
@@ -40,12 +40,18 @@ header {
   z-index: 2;
 }
 @keyframes text_glow {
-  0%   {text-shadow: 1px 1px 3px white;}
-  50%  {text-shadow: 6px 6px 18px white;}
-  100% {text-shadow: 1px 1px 3px white;}
+  0% {
+    text-shadow: 1px 1px 3px white;
+  }
+  50% {
+    text-shadow: 6px 6px 18px white;
+  }
+  100% {
+    text-shadow: 1px 1px 3px white;
+  }
 }
 #logoman {
-    display:inline;
+  display: inline;
   position: relative;
   top: 6px;
   z-index: 1;
@@ -56,6 +62,12 @@ header {
   animation-iteration-count: 1;
 }
 @keyframes run_in {
-    from {top: 6px; right:550px;}
-    to {top: 6px;right:0px}
+  from {
+    top: 6px;
+    right: 550px;
+  }
+  to {
+    top: 6px;
+    right: 0px;
+  }
 }

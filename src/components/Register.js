@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerPerson } from "../api";
+import "./login.css";
 
 const Register = () => {
   const [regUsername, setRegUsername] = useState("");
@@ -38,8 +39,8 @@ const Register = () => {
   };
 
   return (
-    <div className= "loginPage">
-            <h1 className="title">Registration</h1>
+    <div className="loginPage" id="loginPage">
+      <h1 className="loginTitle">Registration</h1>
       <form id="loginForm" onSubmit={handleSubmit}>
         <div className="boxes">
           <input
@@ -75,45 +76,8 @@ const Register = () => {
           <button type="submit">Sign Up</button>
         </div>
       </form>
-        </div>
+    </div>
   );
-}
+};
 
 export default Register;
-
-{/* <h1 className="title">Registration</h1>
-      <form id="loginForm" onSubmit={handleSubmit}>
-        <div className="boxes">
-          <input
-            className="input"
-            type="text"
-            name="username"
-            placeholder="UserName*"
-            required={true}
-            minLength="1"
-            onChange={userNameChange}
-            value={regUsername}
-          />
-          <input
-            className="input"
-            type="password"
-            name="password"
-            placeholder="Password*"
-            required={true}
-            minLength="8"
-            onChange={passwordChange}
-            value={regPassword}
-          />
-          <input
-            className="input"
-            type="password"
-            name="confirm password"
-            placeholder="Confirm Password*"
-            required={true}
-            minLength="8"
-            onChange={confirmPasswordChange}
-            value={confirmPassword}
-          />
-          <button type="submit">Sign Up</button>
-        </div>
-      </form> */}

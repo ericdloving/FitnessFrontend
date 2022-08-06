@@ -1,61 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,400;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,400;1,600&display=swap");
 
 .tabbar {
-       width: 100vw;
-       animation: slide 2s;
+  width: 100vw;
+  animation: slide 2s;
 }
 @keyframes slide {
-    from {
-        margin-left:100%;
-        width: 300%;
-    }
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
-
 
 .tab {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    border-radius: 0px;
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15px;
-    height: 2em;
-    width: 15vw; /*need to change if tab count changes*/
-    font-size: 1em;
-    white-space:nowrap;
-    border-left: 1px solid black;
-    border-bottom: 2px solid black;
-    padding: 0;
+  font-family: "Fira Sans Condensed", sans-serif;
+  border-radius: 0px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  height: 2em;
+  width: 15vw; /*need to change if tab count changes*/
+  font-size: 1em;
+  white-space: nowrap;
+  border-left: 1px solid black;
+  border-bottom: 2px solid black;
+  padding: 0;
 }
 .tab.active {
-    font-family: 'Fira Sans Condensed', sans-serif;
-    border-bottom: none;
-    font-style: italic;
-    font-weight:bold;
-    font-size:1.1em;
+  font-family: "Fira Sans Condensed", sans-serif;
+  border-bottom: none;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 #tab1 {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
 }
 #tab2 {
-    background-color: purple;
-    color: white;
+  background-color: purple;
+  color: white;
 }
 #tab3 {
-    background-color: skyblue;
-    color: white;
+  background-color: skyblue;
+  color: white;
 }
 #tab4 {
-    background-color: silver;
-    -webkit-text-fill-color: white;
-  -webkit-text-stroke-width: .2px;
+  background-color: silver;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: black;
 }
 #tab5 {
-    background-color: green;
-    color: white;
+  background-color: green;
+  color: white;
 }

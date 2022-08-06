@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import TabBar from "./TabBar"
-
+import TabBar from "./TabBar";
 import "./header.css";
 
-const Header = ({loggedIn,setLoggedIn }) => {
-
+const Header = ({ loggedIn, setLoggedIn }) => {
   return (
     <header>
       <div id="logowrapper">

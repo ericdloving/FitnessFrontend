@@ -52,7 +52,9 @@ const Home = ({ loggedIn, username }) => {
               <p className="text">Name: {recent.name}</p>
               <p className="text">Goal: {recent.goal}</p>
               {recent.activities ? (
-                <p className="text">Activities: {`${recent.activities.length}`}</p>
+                <p className="text">
+                  Activities: {`${recent.activities.length}`}
+                </p>
               ) : null}
             </div>
           </div>
@@ -60,9 +62,9 @@ const Home = ({ loggedIn, username }) => {
       ) : (
         <div>
           <h1 className="homeTitle">
-            Build the Best <br />
-            <i>You</i>
+            Build the Best
           </h1>
+          <h1 className="homeTitle2">You</h1>
           <div className="homePitch">
             {" "}
             <b>
