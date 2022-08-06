@@ -4,6 +4,8 @@
   margin-bottom: 20px;
   padding: 10px;
   width: 25vw;
+  max-height: 125px;
+  overflow-y:auto;
   background: white;
 }
 .routine:hover{

@@ -9,8 +9,9 @@ header {
   background: #062f4f;
   border:none;
   white-space:nowrap;
-  position:absolute;
+  position:fixed;
   width:100vw;
+  z-index:2;
 }
 
 #logowrapper {

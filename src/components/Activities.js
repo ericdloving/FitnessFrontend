@@ -46,8 +46,8 @@ const Activities = ({ username }) => {
       <div className="routine" id="createActivity" onClick = {handleClickSummary}>
         {username ? (
           <p>
-            Welcome, {username}! If you would like to create a new activity
-            click here.
+            Welcome, {username}! If you would like to <span style={{fontWeight: 'bold'}}>CREATE A NEW ACTIVITY </span>
+             click here.
           </p>
         ) : (
           <p>
