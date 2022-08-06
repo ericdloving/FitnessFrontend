@@ -3,20 +3,22 @@
 }
 
 .loginPage {
-    top: 50px;
-position:absolute;        flex-direction: column;
+  background-image: linear-gradient(red, white);
+    top: 107px;
+position:absolute;        
+flex-direction: column;
         align-items: center;
         width: 100%;
         height: 80%;
+        border-radius: 0;
 }
 #loginForm{
-    top: 50px;
+    top: 80px;
   flex-direction: column;
   align-items: center;
   justify-items: center;
   width: 100%;
-  height: 80%;
-  border: solid
+
 }
 .boxes{
     display: flex;
