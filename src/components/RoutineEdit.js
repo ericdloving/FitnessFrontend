@@ -135,7 +135,7 @@ async function updateSelectedRoutine() {
   try {
     const token = localStorage.getItem("token")
     const myRoutines = await getRoutinesByUser(selectedRoutine.creatorName, token)
-    setSelectedRoutine(myRoutines.find((routine)=> routine.id === selectedRoutine.id))
+    myRoutines ? setSelectedRoutine(myRoutines.find((routine)=> routine.id === selectedRoutine.id)):null
   }catch(error) {throw error}
 }
 

@@ -36,8 +36,8 @@ const Login = ({setLoggedIn, username, setUsername}) => {
 
           
     return (
-        <div className= "loginPage">
-        <h1>Welcome Please Login</h1>
+        <div className= "loginPage" id="loginPage">
+        <h1 className="loginTitle">Welcome Please Login</h1>
         <form id="loginForm" onSubmit={handleSubmit}>
         <div className="boxes">
             <input className="input"
@@ -57,7 +57,7 @@ const Login = ({setLoggedIn, username, setUsername}) => {
             <button type="submit">Log In</button>
             </div>
         </form>
-        <Link to="/Register">Don't have account? Sign up here!</Link>
+        <Link to="/Register" className="register">Don't have account? Sign up here!</Link>
     </div>
     );
     };

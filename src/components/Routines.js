@@ -24,7 +24,6 @@ const Routines = ({setLength}) => {
   async function fetchRoutines() {
     const returnRoutines = await getRoutines();
     setAllRoutines(returnRoutines);
-    setLength(returnRoutines.length);
   }
   useEffect(() => {
     fetchRoutines();
@@ -94,14 +93,14 @@ const Routines = ({setLength}) => {
       ) : (
         <h3>There are no routines to display</h3>
       )}
-     
+     <div id="bottomSpacer"></div>
       <div id="pageButtonContainer">
       <button
-            className="pageNum"
+            className={pageNumber <= 1 ? "hidden" : "pageButton"  }
             onClick={handlePageButton}
             value={pageNumber >= 1 ? 1 : null}
           >
-            {pageNumber >= 1 ? "First" : null}
+            {pageNumber >= 2 ? "First" : null}
         </button>
         <button
           value={pageNumber > 1 ? pageNumber - 1 : 1}
@@ -111,20 +110,7 @@ const Routines = ({setLength}) => {
         >
           {pageNumber === 1 ? null : "Prev"}
         </button>
-        {pageButtons.map((pNum) => {
-          return (
-            <button
-              key={`page${pNum}`}
-              value={pNum}
-              className="pageButton"
-              disabled={pageNumber === pNum ? true : false}
-              onClick={handlePageButton}
-            >
-              "{pNum}"
-            </button>
-          );
-        })}
-        <div className="currentPage">
+        <div className="currentPage" >
           <button
             className={pageNumber > 2 ? "pageNum":"hidden"}
             onClick={handlePageButton}

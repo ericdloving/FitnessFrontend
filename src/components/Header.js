@@ -3,7 +3,7 @@ import TabBar from "./TabBar"
 
 import "./header.css";
 
-const Header = ({ user, setUser,loggedIn,setLoggedIn }) => {
+const Header = ({loggedIn,setLoggedIn }) => {
 
   return (
     <header>

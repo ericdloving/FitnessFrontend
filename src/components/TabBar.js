@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./app.css"
-
-
-
-
 import "./TabBar.css"
+
 const TabBar = ({loggedIn,setLoggedIn})=>{
     const navigate = useNavigate();
     const [selectedTab, setSelectedTab] = useState("1");
     
-
+useEffect(() => {
+//this is just to make sure the tabs update every time.
+},[selectedTab])
 
     const handleTabClick = (event)=>{
         setSelectedTab(event.target.value);

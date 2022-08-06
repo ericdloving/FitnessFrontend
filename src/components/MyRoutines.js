@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import "./app.css"
 import "./routineActivities.css";
 import {
   getRoutinesByUser,
   whoAmI,
-  editUserRoutine,
-  deleteUserRoutine,
 } from "../api";
 import { CreateRoutine, RoutineEdit } from "./";
 

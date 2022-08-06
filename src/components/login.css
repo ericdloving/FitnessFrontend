@@ -5,25 +5,35 @@
 .loginPage {
   background-image: linear-gradient(green, white);
     top: 107px;
-position:absolute;        
+position:absolute; 
+
+}
+
+#loginPage{
+  display: flex;       
 flex-direction: column;
         align-items: center;
         width: 100%;
         height: 80%;
         border-radius: 0;
 }
-#loginForm{
-    top: 80px;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  width: 100%;
 
-}
-.boxes{
+.boxes,.loginTitle,.register{
+  margin: 10px;
     display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  
+  align-items: space-between;
+  position: relative;
+  top: 20vh;
+}
+
+.loginTitle{
+  -webkit-text-fill-color: rgb(19, 8, 8);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(71, 241, 102);
+}
+
+.input{
+  margin: 5px;
+  border-radius: 0
 }

@@ -30,6 +30,7 @@
     padding: 0;
 }
 .tab.active {
+    font-family: 'Fira Sans Condensed', sans-serif;
     border-bottom: none;
     font-style: italic;
     font-weight:bold;
@@ -46,22 +47,15 @@
 }
 #tab3 {
     background-color: skyblue;
-    color: black;
+    color: white;
 }
 #tab4 {
     background-color: silver;
-    color: black;
+    -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: .2px;
+  -webkit-text-stroke-color: black;
 }
 #tab5 {
     background-color: green;
-    color: black;
-}
-
-#form{
-    display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 80%;
-  border: solid
+    color: white;
 }
