@@ -100,7 +100,7 @@ const Routines = ({setLength}) => {
         </button>
         <button
           value={pageNumber > 1 ? pageNumber - 1 : 1}
-          className="pageButton"
+          className={pageNumber > 1 ? "pageButton" : "hidden" } 
           disabled={pageNumber < 2 ? true : false}
           onClick={handlePageButton}
         >
@@ -121,60 +121,60 @@ const Routines = ({setLength}) => {
         })}
         <div className="currentPage">
           <button
-            className="pageNum"
+            className={pageNumber > 2 ? "pageNum":"hidden"}
             onClick={handlePageButton}
             value={pageNumber > 2 ? pageNumber - 2 : 1}
           >
-            {pageNumber > 2 ? `${pageNumber - 2},` : null}
+            {pageNumber > 2 ? `${pageNumber - 2}` : null}
           </button>
           <button
-            className="pageNum"
+            className={pageNumber>1 ? "pageNum" : "hidden"}
             onClick={handlePageButton}
             value={pageNumber > 1 ? pageNumber - 1 : 1}
           >
-            {pageNumber > 1 ? `${pageNumber - 1},` : null}
+            {pageNumber > 1 ? `${pageNumber - 1}` : null}
           </button>
           <button
-            className="pageNum"
+            className="pageButton"
             id="currentPage"
             onClick={() => setPageNumber(pageNumber)}
           >{` ${pageNumber}`}</button>
           <button
-            className="pageNum"
+            className={pageNumber < totalPageCount ? "pageButton" : "hidden"}
             onClick={handlePageButton}
             value={pageNumber >= 1 ? pageNumber + 1 : null}
           >
-            {pageNumber + 1 < totalPageCount ? `,${pageNumber + 1}` : null}
+            {pageNumber + 1 < totalPageCount ? `${pageNumber + 1}` : null}
           </button>
           <button
-            className="pageNum"
+            className={pageNumber < totalPageCount ? "pageButton": "hidden"}
             onClick={handlePageButton}
-            value={pageNumber <= totalPageCount ? pageNumber + 2 : null}
+            value={pageNumber < totalPageCount ? pageNumber + 2 : null}
           >
-            {pageNumber + 2 < totalPageCount ? `,${pageNumber + 2}` : null}
+            {pageNumber + 2 < totalPageCount ? `${pageNumber + 2}` : null}
           </button>
-        </div>
+        
         <button
           value={
             pageNumber * resultsPerPage < allRoutines.length
               ? pageNumber + 1
               : pageNumber
           }
-          className="pageButton"
+          className={pageNumber < totalPageCount ? "pageButton": "hidden"}
           disabled={allRoutines.length < pageNumber * resultsPerPage}
           onClick={handlePageButton}
         >
           Next
         </button>
         <button
-            className="pageNum"
+            className={pageNumber < totalPageCount ? "pageButton": "hidden"}
             onClick={handlePageButton}
             value={pageNumber >= 1 ?  totalPageCount  : null}
           >
-            {pageNumber <= totalPageCount ? "Last" : null}
+            {pageNumber < totalPageCount ? "Last" : null}
         </button>
       </div>
-    </div>
+    </div></div>
   );
 };
 
