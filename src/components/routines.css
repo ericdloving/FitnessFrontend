@@ -19,12 +19,20 @@
   height: 100vh;
   position:absolute;
   margin-top: 107px;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
   border-radius: 0;
+  padding-bottom: 200px;
 }
 
 #activities {
-  background-image:linear-gradient(silver,white)
+  background-image:linear-gradient(silver,white);
+  
+}
+#activities .routine:hover {
+  box-shadow: 0px 15px 10px -15px black;
+}
+#createActivity:hover {
+  box-shadow: 0px 15px 10px -15px red;
 }
 
 #currentPage{

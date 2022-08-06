@@ -3,7 +3,7 @@
 }
 
 .loginPage {
-  background-image: linear-gradient(red, white);
+  background-image: linear-gradient(green, white);
     top: 107px;
 position:absolute;        
 flex-direction: column;
