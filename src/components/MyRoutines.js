@@ -11,6 +11,8 @@ import {
 } from "../api";
 import { CreateRoutine, RoutineEdit } from "./";
 
+
+
 const MyRoutines = ({ username }) => {
   const [myRoutines, setMyRoutines] = useState([]);
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -18,6 +20,13 @@ const MyRoutines = ({ username }) => {
   const [selectedRoutine, setSelectedRoutine] = useState(null);
   const [routineWasEdited, setRoutineWasEdited] = useState(false);
   const token = localStorage.getItem("token");
+
+  window.addEventListener('keydown', (event)=> {
+    if(event.key === 'Escape' ) {
+      setShowEditModal(false);
+      setShowCreateModal(false);
+    }
+  })
 
   useEffect(() => {
       async function fetchMyRoutines(username) {

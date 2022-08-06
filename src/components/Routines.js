@@ -16,6 +16,11 @@ const Routines = ({setLength}) => {
   const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
   let pageButtons = [];
 
+  window.addEventListener('keydown', (event)=> {
+    if(event.key === 'Escape' ) {
+      setShowModal(false)
+    }
+  })
   async function fetchRoutines() {
     const returnRoutines = await getRoutines();
     setAllRoutines(returnRoutines);
@@ -140,14 +145,14 @@ const Routines = ({setLength}) => {
             onClick={() => setPageNumber(pageNumber)}
           >{` ${pageNumber}`}</button>
           <button
-            className={pageNumber < totalPageCount ? "pageButton" : "hidden"}
+            className={pageNumber < totalPageCount-1 ? "pageButton" : "hidden"}
             onClick={handlePageButton}
             value={pageNumber >= 1 ? pageNumber + 1 : null}
           >
             {pageNumber + 1 < totalPageCount ? `${pageNumber + 1}` : null}
           </button>
           <button
-            className={pageNumber < totalPageCount ? "pageButton": "hidden"}
+            className={pageNumber < totalPageCount -2  ? "pageButton": "hidden"}
             onClick={handlePageButton}
             value={pageNumber < totalPageCount ? pageNumber + 2 : null}
           >
