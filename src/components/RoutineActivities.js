@@ -27,7 +27,7 @@ const RoutineActivities = ({ selectedRoutine,setSelectedRoutine, setShowModal })
                 <button id="closeButton" onClick={() => setShowModal(false)}>Close</button>
                 </footer>
         </div>
-      ) : <div className="routineDetails">
+      ) : <div className="routineDetails" onClick={()=>setShowModal(false)}>
         {`Sorry there aren't any activities for ${selectedRoutine.name}!`}
         <div>
         <center><img src="https://raw.githubusercontent.com/gist/brudnak/dbe7bcbae5a283d2f393b0bb88d0d834/raw/8efb958d79fd81630ee777d62d85bb085391ef4a/portal.gif"/></center>
