@@ -57,7 +57,7 @@ const MyRoutines = ({ username }) => {
   useEffect(() => {}, [showEditModal, showCreateModal]);
 
   return (
-    <div className="routines">
+    <div className="routines" id="myRoutines">
       <Modal show={showCreateModal} className="modal">
         <CreateRoutine setShowCreateModal={setShowCreateModal} setRoutineWasEdited={setRoutineWasEdited} />
       </Modal>

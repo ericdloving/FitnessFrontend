@@ -42,7 +42,7 @@ const Activities = ({ username }) => {
   })
 
   return (
-    <div className="routines">
+    <div className="routines" id="activities">
       <div className="routine">
         {username ? (
           <p onClick = {handleClickSummary}>
