@@ -10,10 +10,16 @@ const createActivity = ({setShowModal}) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token")
-    alert("Activity has been Added!");
     const newActivity = await createUserActivity(name, description,token);
-    setShowModal(false)
-    return newActivity;
+    if('error' in newActivity){
+      alert("An activity with that name already exists please try again!")
+    } 
+    else {
+      console.log(newActivity, " were is the meat")
+      alert("Activity was created!")
+      setShowModal(false)
+      return newActivity;
+      }
   };
 
   const nameChange = (event) => {

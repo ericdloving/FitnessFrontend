@@ -18,7 +18,7 @@ const Activities = ({ username }) => {
       setAllActivities(returnActivities);
     }
     fetchActivities();
-  }, []);
+  }, [showModal]);
 
   useEffect(() => {
     const startIndex = (pageNumber - 1) * resultsPerPage;
@@ -32,21 +32,7 @@ const Activities = ({ username }) => {
   }
 
 
-  function buildPageButtons(pageNum) {
-    pageButtons = [];
-    const totalPageCount = Math.ceil(allRoutines.length / resultsPerPage);
-    if (totalPageCount < 5) {
-      for (let i = 1; i <= totalPageCount; i++) {
-        pageButtons.push(i);
-      }
-    } else {
-      pageButtons = [1, pageNum];
-      for (let i = pageNum; i < 4; i++) {
-        pageButtons.push(pageNum + i);
-      }
-      pageButtons.push(totalPageCount);
-    }
-  }
+
   const handlePageButton = (event) => {
     setPageNumber(parseInt(event.target.value));
   };

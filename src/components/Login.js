@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./app.css"
 import "./login.css"
 import {login} from "../api"
+import { Alert } from "react-bootstrap";
 
 const Login = ({setLoggedIn, username, setUsername}) => {
     
@@ -19,6 +20,8 @@ const Login = ({setLoggedIn, username, setUsername}) => {
         localStorage.setItem("token", token);
         setLoggedIn(true)
         navigate("/")
+        } else {
+            alert("incorrect username or password please try again")
         }
         } catch (error) {
             throw error

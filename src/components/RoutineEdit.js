@@ -61,7 +61,10 @@ const RoutineActivities = ({
       duration,
       token
     );
-    updateSelectedRoutine();
+    if('error' in updatedStuff){
+      alert("You cannot add an activity that already exists on this routine.")
+    } else{updateSelectedRoutine(); alert("Activity added") }
+    
   };
 
   const handleTitleChange = async (event) => {
