@@ -1,4 +1,4 @@
-const BASE = `http://fitnesstrac-kr.herokuapp.com/api`;
+const BASE = `https://fitnesstrac-kr.herokuapp.com/api`;
 
 //Routine functions
 export async function getRoutines() {
