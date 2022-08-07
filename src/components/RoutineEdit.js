@@ -57,8 +57,8 @@ const RoutineActivities = ({
     const updatedStuff = await attachActivity(
       selectedRoutine.id,
       selectedActivityId,
-      count,
-      duration,
+      count || 0,
+      duration || 0,
       token
     );
     if('error' in updatedStuff){
@@ -135,10 +135,9 @@ const RoutineActivities = ({
   function addActivity() {
     return (
       <div className="addActivity">
+    
         <select onChange={handleSelectChange}>
-          <div className="routineDetailsTitle">
-            <p className="title">Select Activity</p>
-          </div>
+          
           {allActivities.map((activity) => {
             return (
               <option value={activity.id} key={activity.id}>

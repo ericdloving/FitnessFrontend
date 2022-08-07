@@ -68,8 +68,8 @@ const Routines = ({ setLength }) => {
   return (
     <div className="routines">
       <p className="routine">
-        Welcome there are {allRoutines.length || "no"} routines! Click on one to
-        view it's activities.
+        Welcome! There are {allRoutines.length || "no"} routines. Click on one to
+        view its activities.
       </p>
       <Modal show={showModal} className="modal">
         <div>

@@ -70,7 +70,7 @@ const MyRoutines = ({ username }) => {
         <div className="routine" onClick={handleClickSummary}>
           <p>
             Welcome, {username}! You have {myRoutines.length || "no"}{" "}
-            routines.Click here to create a new one.
+            routines.  Click on one of them to edit it, or click here to create a new one.</p><p> ➕ 
           </p>
         </div>
         {myRoutines.length

@@ -27,30 +27,32 @@ const Activities = ({ username }) => {
     );
   }, [pageNumber, allActivities]);
 
-  function handleClickSummary(){
+  function handleClickSummary() {
     setShowModal(true);
   }
-
-
 
   const handlePageButton = (event) => {
     setPageNumber(parseInt(event.target.value));
   };
 
-  window.addEventListener('keydown', (event)=> {
-    if(event.key === 'Escape' ) {
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
       setShowModal(false);
     }
-  })
+  });
 
   return (
     <div className="routines" id="activities">
-      <div className="routine" id="createActivity" onClick = {handleClickSummary}>
+      <div className="routine" id="createActivity" onClick={handleClickSummary}>
         {username ? (
-          <p>
-            Welcome, {username}! If you would like to <span style={{fontWeight: 'bold'}}>CREATE A NEW ACTIVITY </span>
-             click here.
-          </p>
+          <>
+            <p>
+              Welcome, {username}! If you would like to{" "}
+              <span style={{ fontWeight: "bold" }}>CREATE A NEW ACTIVITY </span>
+              click here.
+            </p>
+            <p>➕</p>
+          </>
         ) : (
           <p>
             Welcome, there are {allActivities.length || "no"} activities for you
@@ -60,7 +62,7 @@ const Activities = ({ username }) => {
       </div>
       <Modal show={showModal} className="modal">
         <div>
-        <CreateActivity setShowModal={setShowModal}/>
+          <CreateActivity setShowModal={setShowModal} />
         </div>
       </Modal>
       {paginatedActivities.length
@@ -74,18 +76,18 @@ const Activities = ({ username }) => {
             );
           })
         : null}
-        <div id="bottomSpacer"></div>
+      <div id="bottomSpacer"></div>
       <div id="pageButtonContainer">
-      <button
-            className={pageNumber <= 1 ? "hidden" : "pageButton"  }
-            onClick={handlePageButton}
-            value={pageNumber >= 1 ? 1 : null}
-          >
-            {pageNumber >= 2 ? "First" : null}
+        <button
+          className={pageNumber <= 1 ? "hidden" : "pageButton"}
+          onClick={handlePageButton}
+          value={pageNumber >= 1 ? 1 : null}
+        >
+          {pageNumber >= 2 ? "First" : null}
         </button>
         <button
           value={pageNumber > 1 ? pageNumber - 1 : 1}
-          className={pageNumber > 1 ? "pageButton" : "hidden" } 
+          className={pageNumber > 1 ? "pageButton" : "hidden"}
           disabled={pageNumber < 2 ? true : false}
           onClick={handlePageButton}
         >
@@ -93,7 +95,7 @@ const Activities = ({ username }) => {
         </button>
         <div className="currentPage">
           <button
-            className={pageNumber > 2 ? "pageNum":"hidden"}
+            className={pageNumber > 2 ? "pageNum" : "hidden"}
             onClick={handlePageButton}
             value={pageNumber > 2 ? pageNumber - 2 : 1}
           >
@@ -112,39 +114,43 @@ const Activities = ({ username }) => {
             onClick={() => setPageNumber(pageNumber)}
           >{` ${pageNumber}`}</button>
           <button
-            className={pageNumber < totalPageCount-1 ? "pageButton" : "hidden"}
+            className={
+              pageNumber < totalPageCount - 1 ? "pageButton" : "hidden"
+            }
             onClick={handlePageButton}
             value={pageNumber >= 1 ? pageNumber + 1 : null}
           >
             {pageNumber + 1 < totalPageCount ? `${pageNumber + 1}` : null}
           </button>
           <button
-            className={pageNumber < totalPageCount -2  ? "pageButton": "hidden"}
+            className={
+              pageNumber < totalPageCount - 2 ? "pageButton" : "hidden"
+            }
             onClick={handlePageButton}
             value={pageNumber < totalPageCount ? pageNumber + 2 : null}
           >
             {pageNumber + 2 < totalPageCount ? `${pageNumber + 2}` : null}
           </button>
-        
-        <button
-          value={
-            pageNumber * resultsPerPage < allActivities.length
-              ? pageNumber + 1
-              : pageNumber
-          }
-          className={pageNumber < totalPageCount ? "pageButton": "hidden"}
-          disabled={allActivities.length < pageNumber * resultsPerPage}
-          onClick={handlePageButton}
-        >
-          Next
-        </button>
-        <button
-            className={pageNumber < totalPageCount ? "pageButton": "hidden"}
+
+          <button
+            value={
+              pageNumber * resultsPerPage < allActivities.length
+                ? pageNumber + 1
+                : pageNumber
+            }
+            className={pageNumber < totalPageCount ? "pageButton" : "hidden"}
+            disabled={allActivities.length < pageNumber * resultsPerPage}
             onClick={handlePageButton}
-            value={pageNumber >= 1 ?  totalPageCount  : null}
+          >
+            Next
+          </button>
+          <button
+            className={pageNumber < totalPageCount ? "pageButton" : "hidden"}
+            onClick={handlePageButton}
+            value={pageNumber >= 1 ? totalPageCount : null}
           >
             {pageNumber < totalPageCount ? "Last" : null}
-        </button>
+          </button>
         </div>
       </div>
     </div>
