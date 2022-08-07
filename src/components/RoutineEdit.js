@@ -134,8 +134,11 @@ const RoutineActivities = ({
 
   function addActivity() {
     return (
-      <div className="routineDetails">
+      <div className="addActivity">
         <select onChange={handleSelectChange}>
+          <div className="routineDetailsTitle">
+            <p className="title">Select Activity</p>
+          </div>
           {allActivities.map((activity) => {
             return (
               <option value={activity.id} key={activity.id}>
@@ -145,6 +148,7 @@ const RoutineActivities = ({
           })}
         </select>
         <input
+          id="countInput"
           className="input"
           type="number"
           name="count"
@@ -154,6 +158,7 @@ const RoutineActivities = ({
           placeholder="Count"
         />
         <input
+          id="durInput"
           className="input"
           type="number"
           name="duration"
@@ -163,14 +168,19 @@ const RoutineActivities = ({
           placeholder="duration"
         />
         <button
+          id="addActivityButton"
           type="submit"
           onClick={(e) => {
             setNewActivity(false);
             handleSubmit(e);
-          }}
-        >
-          Add
-        </button>
+          }}>Add</button>
+          <button
+          id="closeButton"
+          onClick={()=>setNewActivity(false)
+          }
+          >Cancel</button>
+          
+        
       </div>
     );
   }
@@ -353,7 +363,7 @@ const RoutineActivities = ({
           </div>
           <div>{newActivity ? addActivity() : null}</div>
           <footer>
-            <button id="addActivityButton" onClick={() => setNewActivity(true)}>
+            <button className={newActivity?"hidden":""} id="addActivityButton" onClick={() => setNewActivity(true)}>
               Add Activity
             </button>
             <button

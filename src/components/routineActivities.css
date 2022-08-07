@@ -210,3 +210,19 @@ footer {
   height: 60%;
   font-size: 18px;
 }
+.addActivity {
+  background:white;
+  bottom:0;
+  z-index: 1000;
+  position: sticky;
+  min-height: 80px;
+}
+select {
+  width: 50%;
+}
+#countInput {
+  width: 20%;
+}
+#durInput {
+  width: 20%;
+}
